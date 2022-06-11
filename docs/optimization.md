@@ -13,11 +13,7 @@
 
 ## Bindings for external solvers
 
-{{< hint warning >}}
-
-Some of them require paid license to work.
-
-{{< /hint >}}
+> Some of them require paid license to work.
 
 - [AmplNLReader.jl](https://github.com/JuliaSmoothOptimizers/AmplNLReader.jl) : A Julia Interface to AMPL.
 - [AmplNLWriter.jl](https://github.com/jump-dev/AmplNLWriter.jl) : an interface between `MathOptInterface.jl` and AMPL-enabled solvers.
