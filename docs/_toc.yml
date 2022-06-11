@@ -4,5 +4,29 @@
 format: jb-book
 root: index
 chapters:
-  - file: markdown
-  - file: plots
+  - file: ai
+  - file: algorithms
+  - file: audio-video
+  - file: biology
+  - file: chemistry
+  - file: concurrency
+  - file: data-science
+  - file: data-structures
+  - file: dev-tools
+  - file: earth
+  - file: economics-finance
+  - file: fileio
+  - file: graph
+  - file: graphics
+  - file: hardware
+  - file: interop
+  - file: math
+  - file: modeling
+  - file: optimization
+  - file: paradigms
+  - file: physics
+  - file: prob-stats
+  - file: space-science
+  - file: utilities
+  - file: visualization
+  - file: web

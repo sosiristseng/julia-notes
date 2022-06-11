@@ -1,1 +1,1 @@
-# Jupyter book template for Julia Jupyter notebooks
+# Julia Notes
