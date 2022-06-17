@@ -8,9 +8,7 @@
 - [Julia AI](https://github.com/JuliaAI)
 - [Julia ML](https://juliaml.github.io)
 
-## Machine Learning and Neural Networks
-
-### Resources
+## Resources
 
 - [CIML](https://github.com/hal3/ciml) : A Course in Machine Learning. This repository contains the source code for the CIML book (see http://ciml.info/) as well as any course materials that seem useful (slides, documents, labs, etc.).
 - [deepframeworks](https://github.com/zer0n/deepframeworks) : An evaluation of Deep Learning Frameworks.
@@ -21,11 +19,11 @@
 - [mlpnnets.jl](https://github.com/tautologico/learning/blob/master/nnets/mlp/julia/mlpnnets.jl) : Feed-forward MLP neural network implementation.
 - [A Machine Learning](https://home.work.caltech.edu/telecourse.html#lectures) course by Prof. Yaser Abu-Mostafa with videos on Youtube.
 
-## Framwork packages
+## Machine Learning Frameworks
 
 - [Flux.jl][] : A library for machine learning implemented in Julia. See also [Flux model-zoo](https://github.com/FluxML/model-zoo).
 - [Knet.jl](https://github.com/denizyuret/Knet.jl) : Koç University deep learning framework - A machine learning module implemented in Julia. See also [KnetNLP](https://github.com/egeersu/KnetNLP) and [KnetOnnx.jl](https://github.com/egeersu/KnetOnnx.jl)
-- [Lux.jl](https://github.com/avik-pal/Lux.jl): a new Julia deep learning framework that decouples models and parameterization using deeply nested named tuples.
+- [Lux.jl](https://github.com/avik-pal/Lux.jl): a new Julia deep learning framework that decouples models and parameterization (Explicitly Parameterized) using deeply nested named tuples.
 - [MLJ.jl](https://github.com/alan-turing-institute/MLJ.jl) : A Julia machine learning framework by The Alan Turing Institute.
 
 ## Other packages
