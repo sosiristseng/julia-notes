@@ -36,6 +36,7 @@
 
 ## Relational Database Management Systems and SQL
 
+- [DuckDB](https://github.com/duckdb/duckdb): an in-process SQL OLAP Database Management System.
 - [LibPQ.jl](https://github.com/invenia/LibPQ.jl) : A Julia wrapper for the PostgreSQL libpq C library.
 - [MySQL.jl](https://github.com/JuliaDatabases/MySQL.jl) : Julia bindings and helper functions for MariaDB/MySQL C library.
 - [Octo.jl](https://github.com/wookay/Octo.jl) : an SQL Query DSL in Julia.
