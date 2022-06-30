@@ -11,25 +11,17 @@ on:
     branches: [main]
 
 env:
-  PYTHON_VER: "3.10"
+  PYTHON_VER: '3.10'
 
 jobs:
   ci:
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/sosiristseng/docker-juliabook:latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Python ${{ env.PYTHON_VER }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VER }}
-          cache: "pip"
-          cache-dependency-path: "**/requirements.txt"
-      - name: Install Python dependencies
-        run: pip install -r .ci/requirements.txt
+      - uses: actions/checkout@v3
       - name: Build Jupyter Books
-        run: jb build docs --warningiserror --keep-going -v
+        run: jupyter-book build docs/ --warningiserror --keep-going -v
       - name: Deploy Website
         uses: peaceiris/actions-gh-pages@v3.8.0
         if: github.ref == 'refs/heads/main'
