@@ -121,4 +121,3 @@
 See also [Pumas AI](https://github.com/PumasAI), the commercial framework for Pharmaceutical Modeling and Simulation in Julia.
 
 - [DataInterpolations.jl](https://github.com/PumasAI/DataInterpolations.jl) : A library of data interpolation and smoothing functions.
-- [PumasTutorials.jl](https://github.com/PumasAI/PumasTutorials.jl) : Tutorials for pharmaceutical modeling and simulation with Pumas.jl. https://tutorials.pumas.ai
