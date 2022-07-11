@@ -1,0 +1,773 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Graphics &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware and Robotics" href="hardware.html" />
+    <link rel="prev" title="Graph Theory" href="graph.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fgraphics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/graphics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/graphics.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-vision-cv">
+   Computer Vision (CV)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-processing">
+     Image Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opencv-api">
+     OpenCV API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opengl-and-vulkan-api">
+     OpenGL and Vulkan API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-graphics">
+     Vector Graphics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ocr">
+     OCR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geometry">
+   Geometry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#games">
+   Games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misc">
+   Misc
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Graphics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-vision-cv">
+   Computer Vision (CV)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image-processing">
+     Image Processing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opencv-api">
+     OpenCV API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opengl-and-vulkan-api">
+     OpenGL and Vulkan API
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#vector-graphics">
+     Vector Graphics
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ocr">
+     OCR
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geometry">
+   Geometry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#games">
+   Games
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misc">
+   Misc
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="graphics">
+<h1>Graphics<a class="headerlink" href="#graphics" title="Permalink to this headline">#</a></h1>
+<blockquote>
+<div><p>Computer Vision, Graphics, games, geometry in Julia.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry">Julia Geometry Organization</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGL">Julia GL Organization</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGraphics">Julia Graphics Organization</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages">Julia Images Organization</a></p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/JuliaOpenCV">Julia Open CV Organization</a></p></li>
+</ul>
+<section id="computer-vision-cv">
+<h2>Computer Vision (CV)<a class="headerlink" href="#computer-vision-cv" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Computer_vision">Wikipedia: Computer Vision</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/dfdx/ActiveAppearanceModels.jl">AAM.jl</a> : Active Appearance Models.</p></li>
+<li><p><a class="reference external" href="https://github.com/dronir/Bezier.jl">Bezier.jl</a> : Julia functions for computing a Bezier curve.</p></li>
+<li><p><a class="reference external" href="https://github.com/timothyrenner/ColorBrewer.jl">ColorBrewer.jl</a> : A Julia library for generating color brewer color schemes. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/jtramm/ConstructiveSolidGeometry.jl">ConstructiveSolidGeometry.jl</a> : A Constructive Solid Geometry (CSG) and ray tracing package for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/Contour.jl">Contour.jl</a> : Calculating contour curves for 2D scalar fields in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGL/DevIL.jl">DevIL.jl</a> : <a class="reference external" href="https://github.com/DentonW/DevIL">DevIL</a> / OpenIL binding for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGraphics/Fontconfig.jl">Fontconfig.jl</a> : provides basic binding to fontconfig.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/HalideCall.jl">HalideCall.jl</a> : Use shared libraries created by Halide from Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImageFeatures.jl">ImageFeatures.jl</a> : Image feature detection for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGraphics/Luxor.jl">Luxor.jl</a> : an easy-to-use sugary coating in Julia for the Cairo graphics package.</p></li>
+<li><p><a class="reference external" href="https://github.com/aviks/MiniFB.jl">MiniFB.jl</a> : A Julia wrapper around <a class="reference external" href="https://github.com/emoon/minifb">MiniFB</a>, a small cross platform library that makes it easy to render 32 bit pixels in a window.</p></li>
+<li><p><a class="reference external" href="https://github.com/peterkovesi/PerceptualColourMaps.jl">PerceptualColourMaps.jl</a> : Perceptually Uniform Colour Maps for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/iamazadi/Porta.jl">Porta.jl</a> : This project helps with Eric Weinstein’s the Graph-Wall-Tome (GWT) project.</p></li>
+<li><p><a class="reference external" href="https://github.com/shashi/Reel.jl">Reel.jl</a> : Computations caught on camera.</p></li>
+<li><p><a class="reference external" href="https://github.com/rened/ShapeModels.jl">ShapeModels.jl</a> : Statistical shape models / point distribution models.</p></li>
+<li><p><a class="reference external" href="https://github.com/tlnagy/TiffImages.jl">TiffImages.jl</a> : Pure-Julia TIFF I/O.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/VideoIO.jl">VideoIO.jl</a> : Reading and writing of video files in Julia via ffmpeg.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPlots/VisualRegressionTests.jl">VisualRegressionTests.jl</a> : Automated integrated regression tests for graphics libraries.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/ETC-UA/LeafAreaIndex.jl">LeafAreaIndex.jl</a> :  Package to calculate Leaf Area Index from Hemisperical Images. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+<section id="image-processing">
+<h3>Image Processing<a class="headerlink" href="#image-processing" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hyrodium/ImageClipboard.jl">ImageClipboard.jl</a> : Copy &amp; Paste images with Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/peterkovesi/ImageProjectiveGeometry.jl">ImageProjectiveGeometry.jl</a> : Projective geometry for computer vision in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaEarth/ImageQuilting.jl">ImageQuilting.jl</a> : Image quilting for texture synthesis in Julia .</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/Images.jl">Images.jl</a> : An image library for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImageSegmentation.jl">ImageSegmentation.jl</a> : Partitioning images into meaningful regions.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImageView.jl">ImageView.jl</a> : Interactive display of images and movies.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/MeshIO.jl">MeshIO.jl</a> : IO for Meshes.</p></li>
+<li><p><a class="reference external" href="https://github.com/HolyLab/RegisterQD.jl">RegisterQD.jl</a> : It performs image registration using the global optimization routine <a class="reference external" href="https://github.com/timholy/QuadDIRECT.jl">QuadDIRECT</a>. Unlike many other registration packages, this is not “greedy” descent based on an initial guess—it attempts to find the globally-optimal alignment of your images.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaHCI/SubpixelRegistration.jl">SubpixelRegistration.jl</a> : Efficient subpixel image registration algorithm implementation that allows you to register arrays of arbitrary dimensions (not just 2d). Functions are written for AbstractArrays and should work for Images.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/TestImages.jl">TestImages.jl</a> : Loading standard test images into Julia.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/JuliaImages/ImageCL.jl">ImageCL.jl</a> : Image processing with 🏚️ <a class="reference external" href="https://github.com/JuliaGPU/OpenCL.jl">OpenCL.jl</a>. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+<section id="opencv-api">
+<h3>OpenCV API<a class="headerlink" href="#opencv-api" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://docs.opencv.org/">OpenCV</a></p>
+<p><a class="reference external" href="https://docs.opencv.org/master/d8/da4/tutorial_julia.html">Introduction to Julia OpenCV Binding</a></p>
+</section>
+<section id="opengl-and-vulkan-api">
+<h3>OpenGL and Vulkan API<a class="headerlink" href="#opengl-and-vulkan-api" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rdeits/MeshCat.jl">MeshCat.jl</a> : Julia bindings to the MeshCat WebGL viewer.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGL/ModernGL.jl">ModernGL.jl</a> : OpenGL 3+ bindings for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/Gnimuc/Videre">Videre</a> : OpenGL/Vulkan examples written in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGPU/Vulkan.jl">Vulkan.jl</a> : Wrapper of Vulkan, Khronos next generation OpenGL API.</p></li>
+</ul>
+</section>
+<section id="vector-graphics">
+<h3>Vector Graphics<a class="headerlink" href="#vector-graphics" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Vector_graphics">Wikipedia: Vector Graphics</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/GiovineItalia/Compose.jl">Compose.jl</a> : Compose is a vector graphics library for Julia, basis of <a class="reference external" href="https://github.com/GiovineItalia/Gadfly.jl">Gadfly.jl</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImagesCore.jl">ImagesCore.jl</a> : Julia types for representing images.</p></li>
+<li><p><a class="reference external" href="https://github.com/lobingera/Rsvg.jl">Rsvg.jl</a> : An adaptation of the <a class="reference external" href="https://wiki.gnome.org/LibRsvg">librsvg</a> to render SVG to Cairo surfaces.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaTeX/TikzGraphs.jl">TikzGraphs.jl</a> : Graph layout package using algorithms built into <a class="reference external" href="https://www.ctan.org/pkg/pgf">PGF/TikZ 3.0+</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaTeX/TikzPictures.jl">TikzPictures.jl</a> : Library interface to PGF/TikZ, that allows one to create PGF/TikZ pictures and images can be saved as PDF, SVG, and TEX. If using IJulia, it will output SVG images.</p></li>
+</ul>
+</section>
+<section id="ocr">
+<h3>OCR<a class="headerlink" href="#ocr" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/leferrad/OCReract.jl">OCReract.jl</a> : A simple Julia wrapper for <a class="reference external" href="https://tesseract-ocr.github.io/tessdoc/Installation.html">Tesseract</a> OCR.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/GantZA/AttentionOCR.jl">AttentionOCR.jl</a> : Julia and Flux adaptation of the python package <a class="reference external" href="https://github.com/emedvedev/attention-ocr">aocr.py</a> using <a class="reference external" href="https://github.com/merckxiaan/flux-seq2seq">Seq2seq with Attention</a>.</p></li>
+</ul>
+</details>
+</section>
+</section>
+<section id="geometry">
+<h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Geometry">Wikipedia: Geometry</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Algebraic_geometry">Wikipedia: Algebraic Geometry</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Computational_geometry">Wikipedia: Computational Geometry</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Discrete_geometry">Wikipedia: Discrete Geometry</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Solid_geometry">Wikipedia: Solid Geometry</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaPolyhedra/CDDLib.jl">CDDLib.jl</a> : A wrapper for cdd, the library for polyhedra manipulation such as double description and Fourier-Motzkin elimination. This module can either be used in a <strong>lower level</strong> using the API of cdd or using the higher level interface of Polyhedra.jl.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/Clipper.jl">Clipper.jl</a> : Julia wrapper for Angus Johnson’s <a class="reference external" href="http://www.angusj.com/delphi/clipper.php">Clipper</a> library.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPolyhedra/ConvexHull.jl">ConvexHull.jl</a> : A Julia library for polyhedral computations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/CoordinateTransformations.jl">CoordinateTransformations.jl</a> : A fresh approach to coordinate transformations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/Descartes.jl">Descartes.jl</a> : A research project into the representation of solid geometry.</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/Ganja.jl">Ganja.jl</a> : Visualization for geometric algebra, not just algebra, using <a class="reference external" href="https://github.com/enkimute/ganja.js">Ganja.js</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/GeometricalPredicates.jl">GeometricalPredicates.jl</a> : Fast, robust 2D and 3D geometrical predicates on generic point types. Implementation follows algorithms described in the Arepo paper and used (for e.g.) in the Illustris Simulation.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/GeometryTypes.jl">GeometryTypes.jl</a> : Geometry types and for Julia, based on FixedSizeArrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/Grassmann.jl">Grassmann.jl</a> : ⟨Leibniz-Grassmann-Clifford-Hestenes⟩ differential geometric algebra / multivector simplical complex.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImageFiltering.jl">ImageFiltering.jl</a> : ImageFiltering implements blurring, sharpening, gradient computation, and other linear filtering operations, as well nonlinear filters like min/max.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaImages/ImageMorphology.jl">ImageMorphology.jl</a> : This package provides morphology-related functionality to the <code class="docutils literal notranslate"><span class="pre">Images.jl</span></code> project.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPolyhedra/LRSLib.jl">LRSLib.jl</a> : A wrapper for <code class="docutils literal notranslate"><span class="pre">lrs</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/Meshes.jl">Meshes.jl</a> : Generation and manipulation of triangular meshes for a type of polygon mesh in computer graphics.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/OctTrees.jl">OctTrees.jl</a> : Fast quad and oct-trees.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPolyhedra/Polyhedra.jl">Polyhedra.jl</a> : It provides an unified interface for Polyhedra Manipulation Libraries such as <code class="docutils literal notranslate"><span class="pre">CDDLib.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPolyhedra/QHull.jl">QHull.jl</a> : A Julia wrapper around a PyCall wrapper around the qhull Convex Hull library.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/RayTraceEllipsoid.jl">RayTraceEllipsoid.jl</a> : Ray trace ellipsoid-shaped domes i.e. finds intersection points and refract/reflect according to the refractive indices.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/Rotations.jl">Rotations.jl</a> : Implementations for various 3D rotation parameterisations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGraphics/SignedDistanceFields.jl">SignedDistanceFields.jl</a> : Simple and efficient SDF calculation.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/TetGen.jl">TetGen.jl</a> : <a class="reference external" href="https://wias-berlin.de/software/index.jsp?id=TetGen&amp;lang=1">TetGen</a> wrapper.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/TriangleIntersect.jl">TriangleIntersect.jl</a> : Fast ray-triangle intersections for raytracing.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/VoronoiCells.jl">VoronoiCells.jl</a> : Manipulate Voronoi cells in 2D.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeometry/VoronoiDelaunay.jl">VoronoiDelaunay.jl</a> : Fast and robust Voronoi &amp; Delaunay tessellation creation with Julia.</p></li>
+</ul>
+</section>
+<section id="games">
+<h2>Games<a class="headerlink" href="#games" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaReinforcementLearning/ArcadeLearningEnvironment.jl">ArcadeLearningEnvironment.jl</a> : This package is a Julia wrapper for the ArcadeLearningEnvironment (<a class="reference external" href="https://github.com/mgbellemare/Arcade-Learning-Environment">ALE</a>).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/AtariAlgos.jl">AtariAlgos.jl</a> : Models/algorithms for use with the Arcade Learning Environment (ALE).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMultimedia/CSFML.jl">CSFML.jl</a> : Julia wrapper for CSFML, the official binding of <a class="reference external" href="https://github.com/SFML/SFML">SFML</a> for C.</p></li>
+<li><p><a class="reference external" href="https://github.com/aviks/GameZero.jl">GameZero.jl</a> : Zero overhead game development library for the Julia programming language.</p></li>
+<li><p><a class="reference external" href="https://github.com/sebastianpech/JuliaKara.jl">JuliaKara.jl</a> : A julia port of the learning environment <a class="reference external" href="http://www.swisseduc.ch/informatik/karatojava/">Kara</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMultimedia/SimpleDirectMediaLayer.jl">SimpleDirectMediaLayer.jl</a> : Bindings for the Simple DirectMedia Layer (<a class="reference external" href="https://www.libsdl.org/">SDL</a>) library.</p></li>
+<li><p><a class="reference external" href="https://github.com/xiaodaigh/Game2048.jl">Game2048.jl</a> : Simulation of the game 2048 in Julia. See also the base package <a class="reference external" href="https://github.com/xiaodaigh/Game2048Core.jl">Game2048Core.jl</a>.</p></li>
+</ul>
+</section>
+<section id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/kdheepak/FIGlet.jl">FIGlet.jl</a> : Fonts port of FIGlet, doing ASCII Art.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGraphics/FreeType.jl">FreeType.jl</a> : Font FreeType 2 bindings API wrapper. See also <a class="reference external" href="https://github.com/JuliaGraphics/FreeTypeAbstraction.jl">FreeTypeAbstraction.jl</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLang/julia-logo-graphics">julia-logo-graphics</a> : official versions of the Julia logo.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGL/XCB.jl">XCB.jl</a> : XCB windowing library wrapper.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="graph.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Graph Theory</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="hardware.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hardware and Robotics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

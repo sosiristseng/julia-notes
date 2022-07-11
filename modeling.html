@@ -1,0 +1,794 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Modeling and simulation &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Optimization" href="optimization.html" />
+    <link rel="prev" title="Mathematics" href="math.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fmodeling.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/modeling.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/modeling.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-file-io">
+   Model File IO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-computation">
+   Symbolic Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-structures">
+   Data structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differential-equations">
+   Differential equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partial-differential-equations">
+     Partial Differential Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-algorithms">
+   Stochastic algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#agent-based-models">
+   Agent-based models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#network-modeling">
+   Network modeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrated-assessment-modeling-framework">
+   Integrated Assessment Modeling Framework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities">
+   Utilities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#others">
+   Others
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modeling and simulation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-file-io">
+   Model File IO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-computation">
+   Symbolic Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-structures">
+   Data structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differential-equations">
+   Differential equations
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#partial-differential-equations">
+     Partial Differential Equations
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-algorithms">
+   Stochastic algorithms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#agent-based-models">
+   Agent-based models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#network-modeling">
+   Network modeling
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#integrated-assessment-modeling-framework">
+   Integrated Assessment Modeling Framework
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#utilities">
+   Utilities
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#others">
+   Others
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="modeling-and-simulation">
+<h1>Modeling and simulation<a class="headerlink" href="#modeling-and-simulation" title="Permalink to this headline">#</a></h1>
+<p>General modeling and simulation packages in Julia.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ModiaSim">ModiaSim</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SciML">SciML</a></p></li>
+<li><p><a class="reference external" href="https://juliadynamics.github.io/JuliaDynamics/">Julia Dynamics</a></p></li>
+</ul>
+<section id="model-file-io">
+<h2>Model File IO<a class="headerlink" href="#model-file-io" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/LCSB-BioCore/SBML.jl">SBML.jl</a> : Julia interface to the Systems Biology Markup Language (SBML) library.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/SBMLToolkit.jl">SBMLToolkit.jl</a> : importing models specified in the Systems Biology Markup Language (SBML) into the Julia SciML ecosystem.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/CellMLToolkit.jl">CellMLToolkit.jl</a> : a Julia library that connects <code class="docutils literal notranslate"><span class="pre">CellML</span></code> models to the Scientific Julia ecosystem.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/ReactionNetworkImporters.jl">ReactionNetworkImporters.jl</a> : Loading BioNetGen <code class="docutils literal notranslate"><span class="pre">.net</span></code> file.</p></li>
+</ul>
+</section>
+<section id="symbolic-computation">
+<h2>Symbolic Computation<a class="headerlink" href="#symbolic-computation" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Symbolic_computation">Wikipedia: Symbolic Computation</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/chakravala/Reduce.jl">Reduce.jl</a> : Symbolic parser generator for Julia language expressions using REDUCE algebra term rewriter.</p></li>
+<li><p><a class="reference external" href="https://github.com/jlapeyre/Symata.jl">Symata.jl</a> : language for symbolic mathematics.</p></li>
+<li><p><a class="reference external" href="https://github.com/MilesCranmer/SymbolicRegression.jl">SymbolicRegression.jl</a> : Distributed High-Performance symbolic regression in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSymbolics/Symbolics.jl">Symbolics.jl</a> : A fast and modern CAS for a fast and modern language.</p></li>
+<li><p><a class="reference external" href="https://github.com/symengine/SymEngine.jl">SymEngine.jl</a> : Julia wrappers of <a class="reference external" href="https://github.com/symengine/symengine">SymEngine</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaPy/SymPy.jl">SymPy.jl</a> : Julia interface to <a class="reference external" href="https://www.sympy.org/">SymPy</a> via <code class="docutils literal notranslate"><span class="pre">PyCall.jl</span></code>.</p></li>
+</ul>
+</section>
+<section id="data-structures">
+<h2>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">#</a></h2>
+<p>See also <a class="reference external" href="math.md#array-data-structures">Math | Linear Algebra | Array Data structures</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jonniedie/ComponentArrays.jl">ComponentArrays.jl</a> : Arrays with arbitrarily nested named components.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/LabelledArrays.jl">LabelledArrays.jl</a> : Arrays with a label for each element.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/RecursiveArrayTools.jl">RecursiveArrayTools.jl</a> : Tools for easily handling nestings array objects like arrays of arrays.</p></li>
+</ul>
+</section>
+<section id="differential-equations">
+<h2>Differential equations<a class="headerlink" href="#differential-equations" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Differential_equation">Wikipedia: Differential equations</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/SciML/Catalyst.jl">Catalyst.jl</a> : Domain-specific language (DSL) for chemical reaction networks.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/DataDrivenDiffEq.jl">DataDrivenDiffEq.jl</a> : Data driven modeling and automated discovery of dynamical systems.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/DiffEqFlux.jl">DiffEqFlux.jl</a>: Combining DifferentialEquations.jl and Flux.jl as its building blocks to support research in Scientific Machine Learning, specifically neural differential equations and universal differential equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/DiffEqSensitivity.jl">DiffEqSensitivity.jl</a> : A component of the DiffEq ecosystem for sensitivity analysis.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a> : High-performance solvers of differential equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/jdrugo/DiffModels.jl">DiffModels.jl</a> : Diffusion Model simulation and first-passage time densities in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDynamics/DynamicalSystems.jl">DynamicalSystems.jl</a> : Julia software library for the exploration of chaos and nonlinear dynamics.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaTurkuDataScience/FdeSolver.jl">FdeSolver.jl</a> : A Julia package for the numerical solution of fractional differential equations (FDEs) as well as systems of equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/tshort/FunctionalModels.jl">FunctionalModels.jl</a> : Equation-based modeling and simulations in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/gabrevaya/LatentDiffEq.jl">LatentDiffEq.jl</a> : A high-level Flux + DiffEq library solving Generative ODE modeling with Known Unknowns (GOKU). <a class="reference external" href="https://youtu.be/jhIgs4swrMA">JuliaCon 2021 video</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/ModelingToolkit.jl">ModelingToolkit.jl</a> : A modeling framework for automatically parallelized scientific machine learning (SciML) in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/ModiaSim/Modia.jl">Modia.jl</a> : Modia is a Julia package for modeling and simulation of multidomain engineering systems described by differential equations, algebraic equations, and (space-discretized) partial differential equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/jangevaa/Pathogen.jl">Pathogen.jl</a> : Utilities to simulate and perform inference of disease dynamics.</p></li>
+<li><p><a class="reference external" href="https://github.com/QuantumBFS/QuDiffEq.jl">QuDiffEq.jl</a> : Quantum Algorithms for solving differential equations</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaHolomorphic/RiemannHilbert.jl">RiemannHilbert.jl</a> : A Julia package for solving Riemann–Hilbert problems.</p></li>
+<li><p><a class="reference external" href="https://github.com/BenLauwens/SimJulia.jl">SimJulia.jl</a> : A discrete event process oriented simulation framework written in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/SingularIntegralEquations.jl">SingularIntegralEquations.jl</a> : An experimental Julia package for solving singular integral equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/Sundials.jl">Sundials.jl</a> : A Julia package that interfaces to the <a class="reference external" href="https://computing.llnl.gov/projects/sundials">Sundials</a> library and includes a nonlinear solver (KINSOL), ODE’s (CVODE), and DAE’s (IDA).</p></li>
+</ul>
+<section id="partial-differential-equations">
+<h3>Partial Differential Equations<a class="headerlink" href="#partial-differential-equations" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference_method">Wikipedia: Finite difference method</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Finite_element_method">Wikipedia: Finite element method</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Finite_volume_method">Wikipedia: Finite volume method</a></p></li>
+</ul>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/PtFEM/PtFEM.jl">PtFEM.jl</a> : “<a class="reference external" href="https://www.wiley.com/en-us/Programming+the+Finite+Element+Method,+5th+Edition-p-9781119973348">Programming the Finite Element Method</a>” by I M Smith, D V Griffiths and L Margetts.</p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/CliMA/ClimaCore.jl">ClimaCore.jl</a> : Tools for building spatial discretizations. <a class="reference external" href="https://youtu.be/4bQvF3rGB84">JuliaCon 2021 video</a></p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/DiffEqOperators.jl">DiffEqOperators.jl</a> : Linear operators for discretizations of differential equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaFEM/FEMBasis.jl">FEMBasis.jl</a> : Package contains interpolation routines for standard finite element function spaces.</p></li>
+<li><p><a class="reference external" href="https://github.com/PetrKryslUCSD/FinEtools.jl">FinEtools.jl</a> : <code class="docutils literal notranslate"><span class="pre">FinEtools</span></code> is a package for basic operations on finite element meshes: Construction, modification, selection, and evaluation of quantities defined on a mesh.</p></li>
+<li><p><a class="reference external" href="https://github.com/FourierFlows/FourierFlows.jl">FourierFlows.jl</a> : Tools for building fast, hackable, pseudospectral partial differential equation solvers on periodic domains.</p></li>
+<li><p><a class="reference external" href="https://github.com/gridap/Gridap.jl">Gridap.jl</a> : Grid-based approximation of PDEs with finite element (FE) discretizations.</p></li>
+<li><p><a class="reference external" href="https://github.com/lcw/Heptapus.jl">Heptapus.jl</a> : The roofline function is a translation of the <a class="reference external" href="https://github.com/paranumal/libparanumal/">roofline code</a>, Accelerated finite element flow solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaFEM/JuliaFEM.jl">JuliaFEM.jl</a> : Finite Element method solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/Krylov.jl">Krylov.jl</a> : A Julia Basket of Hand-Picked Krylov Methods.</p></li>
+<li><p><a class="reference external" href="https://github.com/cvdlab/LinearAlgebraicRepresentation.jl">LinearAlgebraicRepresentation.jl</a> : Official Julia implementation of <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/S001044851300184X">LAR</a>, the Linear Algebraic Representation for Solid Modeling. LAR is a general representation scheme for geometric and topological modeling.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/MethodOfLines.jl">MethodOfLines.jl</a> : Automatic Finite Difference PDE solving with Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/foldfelis/NeuralOperators.jl">NeuralOperators.jl</a> : Learning the solution operator for partial differential equations in pure Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/NeuralPDE.jl">NeuralPDE.jl</a> : Physics-Informed Neural Networks (PINN) and Deep BSDE Solvers of Differential Equations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaParallel/PETSc.jl">PETSc.jl</a> : A Julia interface for <a class="reference external" href="https://www.mcs.anl.gov/petsc/">PETSc</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/trixi-framework/Trixi.jl">Trixi.jl</a> : Adaptive high-order numerical simulations of hyperbolic PDEs in Julia.  <a class="reference external" href="https://youtu.be/hoViWRAhCBE">JuliaCon 2021 video</a></p></li>
+</ul>
+</section>
+</section>
+<section id="stochastic-algorithms">
+<h2>Stochastic algorithms<a class="headerlink" href="#stochastic-algorithms" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Stochastic_simulation">Wikipedia: Stochastic simulation</a> algorithms (SSA) are also included in the <code class="docutils literal notranslate"><span class="pre">DifferentialEquations</span></code> ecosystem.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/alanderos91/BioSimulator.jl">BioSimulator.jl</a> : A stochastic simulation framework in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/sdwfrost/Gillespie.jl">Gillespie.jl</a> : Stochastic Gillespie-type simulations using Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/StochasticDiffEq.jl">StochasticDiffEq.jl</a> : Solvers for stochastic differential equations in the SciML ecosystem.</p></li>
+</ul>
+</section>
+<section id="agent-based-models">
+<h2>Agent-based models<a class="headerlink" href="#agent-based-models" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Agent-based_model">Wikipedia: Agent-based model</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDynamics/Agents.jl">Agents.jl</a> : Agent-based modeling framework in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDynamics/DynamicalBilliards.jl">DynamicalBilliards.jl</a> : An easy-to-use, modular and extendable Julia package for Dynamical Billiard systems in two dimensions.</p></li>
+</ul>
+</section>
+<section id="network-modeling">
+<h2>Network modeling<a class="headerlink" href="#network-modeling" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mehalter/Petri.jl">Petri.jl</a> : Petri net modeling framework.</p></li>
+<li><p><a class="reference external" href="https://github.com/PIK-ICoNe/NetworkDynamics.jl">NetworkDynamics.jl</a> : A package for working with dynamical systems on complex networks. NetworkDynamics.jl provides an interface between <a class="reference external" href="https://github.com/JuliaGraphs/Graphs.jl">Graphs.jl</a> and <a class="reference external" href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a>.</p></li>
+</ul>
+</section>
+<section id="integrated-assessment-modeling-framework">
+<h2>Integrated Assessment Modeling Framework<a class="headerlink" href="#integrated-assessment-modeling-framework" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/mimiframework/Mimi.jl">Mimi.jl</a> : <a class="reference external" href="https://en.wikipedia.org/wiki/Integrated_assessment_modelling">Integrated Assessment Modeling Framework</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/jrising/OptiMimi.jl">OptiMimi.jl</a> : Optimization for the <code class="docutils literal notranslate"><span class="pre">Mimi.jl</span></code> modeling framework.</p></li>
+</ul>
+</section>
+<section id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDynamics/DrWatson.jl">DrWatson.jl</a> : a Julia package created to help people “deal” with their simulations, simulation parameters.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/SciMLBenchmarks.jl">SciMLBenchmarks.jl</a> : Benchmarks for scientific machine learning (SciML) software and differential equation solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/JinraeKim/SimulationLogger.jl">SimulationLogger.jl</a> : providing convenient logging tools for <a class="reference external" href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/jonniedie/SimulationLogs.jl">SimulationLogs.jl</a> : Signal logging and scoping for <a class="reference external" href="https://github.com/SciML/DifferentialEquations.jl">DifferentialEquations.jl</a> simulations.</p></li>
+</ul>
+</section>
+<section id="others">
+<h2>Others<a class="headerlink" href="#others" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/madsjulia/Mads.jl">Mads.jl</a> : <a class="reference external" href="https://mads.gitlab.io/">MADS</a>, Model Analysis &amp; Decision Support.</p></li>
+</ul>
+</section>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/HEVOgSLBzWA">Workshop for <code class="docutils literal notranslate"><span class="pre">ModelingToolkit.jl</span></code></a> : A Youtube video for JuliaCon 2021.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/SciMLTutorials.jl">SciMLTutorials.jl</a> : Tutorials for doing scientific machine learning (SciML) and high-performance differential equation solving with open source software.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="math.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Mathematics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="optimization.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Optimization</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

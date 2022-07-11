@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>File I/O &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Graph Theory" href="graph.html" />
+    <link rel="prev" title="Economics and Finance" href="economics-finance.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Ffileio.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/fileio.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/fileio.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-and-loading-julia-objects">
+   Saving and loading Julia Objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-compression">
+   File Compression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-formats">
+   File Formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabular-data">
+   Tabular Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xml-files">
+   XML files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-processors">
+   Document Processors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latex">
+     LaTeX
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#citation-management">
+     Citation management
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-formats">
+   Image Formats
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>File I/O</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#saving-and-loading-julia-objects">
+   Saving and loading Julia Objects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-compression">
+   File Compression
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-formats">
+   File Formats
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#json-files">
+     JSON files
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tabular-data">
+   Tabular Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#xml-files">
+   XML files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#document-processors">
+   Document Processors
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#latex">
+     LaTeX
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#citation-management">
+     Citation management
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-formats">
+   Image Formats
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="file-i-o">
+<h1>File I/O<a class="headerlink" href="#file-i-o" title="Permalink to this headline">#</a></h1>
+<p>General file read/write libraries in Julia.</p>
+<p><strong>Organizations</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO">Julia IO</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/FileIO.jl">FileIO.jl</a> : general dispatcher for <code class="docutils literal notranslate"><span class="pre">save</span></code> and <code class="docutils literal notranslate"><span class="pre">load</span></code>, support for recognizing magic bytes and file-extensions..</p></li>
+<li><p><a class="reference external" href="https://github.com/ma-laforge/FileIO2.jl">FileIO2.jl</a> : File Object Type Hierarchy. Less active than <code class="docutils literal notranslate"><span class="pre">FileIO.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/Rory-Finnegan/FilePaths.jl">FilePaths.jl</a> :  A type based approach to working with filesystem paths in julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/r3tex/MapD.jl">MapD.jl</a> : A julia library for conveniently inserting data to MapD/<a class="reference external" href="https://www.omnisci.com/">OmniSci</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/SerialPorts.jl">SerialPorts.jl</a> : SerialPort IO streams in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/Keno/StructIO.jl">StructIO.jl</a> : Experimental new implementation of <code class="docutils literal notranslate"><span class="pre">StrPack.jl</span></code>-like functionality.</p></li>
+<li><p><a class="reference external" href="https://github.com/ararslan/ULID.jl">ULID.jl</a> : <code class="docutils literal notranslate"><span class="pre">ulid()</span></code> generates Universally Unique Lexicographically Sortable Identifiers (ULIDs) in Julia.</p></li>
+</ul>
+<section id="saving-and-loading-julia-objects">
+<h2>Saving and loading Julia Objects<a class="headerlink" href="#saving-and-loading-julia-objects" title="Permalink to this headline">#</a></h2>
+<p>Similar to Python’s <a class="reference external" href="https://docs.python.org/3/library/pickle.html"><code class="docutils literal notranslate"><span class="pre">pickle</span></code></a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/CBOR.jl">CBOR.jl</a> : A Concise Binary Object Representation (<a class="reference external" href="https://tools.ietf.org/html/rfc7049">RFC 7049</a>) Julia package for working with the CBOR data format, providing straightforward encoding and decoding for Julia types.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/JLD.jl">JLD.jl</a> : High-level interface to HDF5 for saving and loading Julia variables &amp; types</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/JLD2.jl">JLD2.jl</a> : Next-generation successor to JLD.</p></li>
+</ul>
+</section>
+<section id="file-compression">
+<h2>File Compression<a class="headerlink" href="#file-compression" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/Blosc.jl">Blosc.jl</a> : The Blosc Module provides fast lossless compression for the Julia language by interfacing the Blosc Library, currently limited to 32-bit buffer sizes.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/GZip.jl">GZip.jl</a> : A Julia interface for gzip functions in zlib.</p></li>
+<li><p><a class="reference external" href="https://github.com/samoconnor/InfoZIP.jl">InfoZIP.jl</a> : ZIP Archive Interface. Wrapper for Info-ZIP (and ZipFile.jl).</p></li>
+<li><p><a class="reference external" href="https://github.com/yuyichao/LibArchive.jl">LibArchive.jl</a> : Wrapper for <a class="reference external" href="http://www.libarchive.org/">libarchive</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/BioJulia/Libz.jl">Libz.jl</a> : Yet another zlib interface for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/bicycle1885/Snappy.jl">Snappy.jl</a> : A Julia wrapper for the <a class="reference external" href="https://code.google.com/p/snappy/">snappy</a> library (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/fhs/ZipFile.jl">ZipFile.jl</a> : Read/Write ZIP archives in Julia.</p></li>
+</ul>
+</section>
+<section id="file-formats">
+<h2>File Formats<a class="headerlink" href="#file-formats" title="Permalink to this headline">#</a></h2>
+<p>Julia itself can <a class="reference external" href="https://docs.julialang.org/en/v1/stdlib/TOML/">read / write TOML files</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaData/Avro.jl">Avro.jl</a> : A pure Julia implementation of the <a class="reference external" href="https://avro.apache.org/docs/current/index.html">Apache Avro</a> data standard</p></li>
+<li><p><a class="reference external" href="https://github.com/sam81/BDF.jl">BDF.jl</a> : Module to read <a class="reference external" href="https://www.biosemi.com/faq/file_format.htm">Biosemi BDF files</a> with the Julia programming language.</p></li>
+<li><p><a class="reference external" href="https://github.com/joshuamiller/BEncode.jl">BEncode.jl</a> : A Julia library for BEncode metadata files used for encoding BitTorrent storage and transmission of loosely structured data.</p></li>
+<li><p><a class="reference external" href="https://github.com/MikeInnes/BSON.jl">BSON.jl</a> : A Julia package for working with the Binary JSON serialisation format, that can be used as a general store for Julia data structures.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/ConfParser.jl">ConfParser.jl</a> : Julia package for parsing configuration (<code class="docutils literal notranslate"><span class="pre">*.ini</span></code>) files.</p></li>
+<li><p><a class="reference external" href="https://github.com/carlobaldassi/FastaIO.jl">FastaIO.jl</a> : Utilities to read/write FASTA format bioinformatics files in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/FlatBuffers.jl">FlatBuffers.jl</a> : A package to support Julia code generated by Google’s flatbuffers compiler <code class="docutils literal notranslate"><span class="pre">flatc</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/traktofon/FortranFiles.jl">FortranFiles.jl</a> : Read and write “unformatted” Fortran data, i.e. binary data interspersed with metadata about data records.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/HarwellRutherfordBoeing.jl">HarwellBoeing.jl</a> : A reader for matrices and supplementary data written in the Harwell-Boeing format.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/HDF5.jl">HDF5.jl</a> : Lib to read HDF5 format files, a widely-used file format for general data.</p></li>
+<li><p><a class="reference external" href="https://github.com/tuckermcclure/HDF5Logger.jl">HDF5Logger.jl</a> : Allows logging individual frames of data to an HDF5 file over time.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/IniFile.jl">IniFile.jl</a> : Reading and writing Windows-style INI files. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLang/IniFile.jl">IniFile.jl</a> : Reading and writing Windows-style INI files.</p></li>
+<li><p><a class="reference external" href="https://github.com/fhs/NPZ.jl">NPZ.jl</a> : Julia package that provides support for reading and writing Numpy .npy and .npz files.</p></li>
+<li><p><a class="reference external" href="https://github.com/emmt/OIFITS.jl">OIFITS.jl</a> : Support for OI-FITS (optical interferometry data format).</p></li>
+<li><p><a class="reference external" href="https://github.com/christophfeinauer/PdbTool.jl">PdbTool</a> : An object-oriented Julia tool to parse <a class="reference external" href="https://www.rcsb.org">PDB files</a> and work with them.</p></li>
+<li><p><a class="reference external" href="https://github.com/azraq27/RawFile.jl">RawFile.jl</a> by &#64;azraq27 : A simple, fast file format for storing numeric arrays in <code class="docutils literal notranslate"><span class="pre">.raw</span></code> files.</p></li>
+<li><p><a class="reference external" href="https://github.com/tk3369/SASLib.jl">SASLib.jl</a> : Provide a Julia library for reading SAS7BDAT data sets.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGeo/Shapefile.jl">Shapefile.jl</a> : Parsing <code class="docutils literal notranslate"><span class="pre">.shp</span></code> files.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/YAML.jl">YAML.jl</a> : read / write <code class="docutils literal notranslate"><span class="pre">.yml</span></code> files.</p></li>
+</ul>
+<section id="json-files">
+<h3>JSON files<a class="headerlink" href="#json-files" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/JSON.jl">JSON.jl</a> : JSON parsing and printing.</p></li>
+<li><p><a class="reference external" href="https://github.com/quinnj/JSON3.jl">JSON3.jl</a> : Yet another JSON package for speed and slick struct mapping. Faster than <code class="docutils literal notranslate"><span class="pre">JSON.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/JSONTables.jl">JSONTables.jl</a> : <code class="docutils literal notranslate"><span class="pre">JSON3.jl</span></code> + <code class="docutils literal notranslate"><span class="pre">Tables.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCloud/LazyJSON.jl">LazyJSON.jl</a> : LazyJSON is an interface for reading JSON data in Julia programs.</p></li>
+</ul>
+</section>
+</section>
+<section id="tabular-data">
+<h2>Tabular Data<a class="headerlink" href="#tabular-data" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/apache/arrow-julia">Arrow.jl</a> : Pure Julia implementation of the apache arrow data format.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/CSV.jl">CSV.jl</a> by &#64;JuliaData :  Utility library for working with CSV and other delimited files in the Julia programming language.</p></li>
+<li><p><a class="reference external" href="https://github.com/queryverse/CSVFiles.jl">CSVFiles.jl</a> : <code class="docutils literal notranslate"><span class="pre">FileIO.jl</span></code> integration for CSV files.</p></li>
+<li><p><a class="reference external" href="https://github.com/WizardMac/DataRead.jl">DataRead.jl</a> : Read files from Stata, SAS, and SPSS.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/Feather.jl">Feather.jl</a> : Julia library for working with feather(v1)-formatted files.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/JuliaDB.jl">JuliaDB.jl</a> : JuliaDB is a package for working with large persistent data sets.</p></li>
+<li><p><a class="reference external" href="https://github.com/sylvaticus/LAJuliaUtils.jl">LAJuliaUtils.jl</a> : Utility functions for Julia, mainly dataframes operations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/MAT.jl">MAT.jl</a> : Julia module for reading MATLAB files.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/Parquet.jl">Parquet.jl</a> : Julia implementation of parquet columnar file format reader and writer.</p></li>
+<li><p><a class="reference external" href="https://gitlab.com/ExpandingMan/Parquet2.jl">Parquet2.jl</a> : (another) pure Julia implementation of the parquet tabular data binary format.</p></li>
+<li><p><a class="reference external" href="https://github.com/queryverse/ParquetFiles.jl">ParquetFiles.jl</a> : This package provides load support for Parquet files under the <code class="docutils literal notranslate"><span class="pre">FileIO.jl</span></code> package.</p></li>
+<li><p><a class="reference external" href="https://github.com/strickek/ReadWriteDlm2.jl">ReadWriteDlm2</a> : CSV IO. Works like readdlm/writedlm, but using decimal comma by default. Additional supporting Date, DateTime, Time, Complex, Missing and Rational types.</p></li>
+<li><p><a class="reference external" href="https://github.com/JockLawrie/Schemata.jl">Schemata.jl</a> : Schema (specification of a data set) for tabular data sets in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/queryverse/StatFiles.jl">StatFiles.jl</a> : <code class="docutils literal notranslate"><span class="pre">FileIO.jl</span></code> integration for Stata, SPSS, and SAS files</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> : This package provides four useful interface functions for working with tabular data in a variety of formats. The discourse <a class="reference external" href="https://discourse.julialang.org/t/tables-jl-a-table-interface-for-everyone/14071">announcment</a></p></li>
+<li><p><a class="reference external" href="https://github.com/piever/TableWidgets.jl">TableWidgets.jl</a> : Interactive widgets to work with tabular data in Julia.</p></li>
+</ul>
+</section>
+<section id="xml-files">
+<h2>XML files<a class="headerlink" href="#xml-files" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/EzXML.jl">EzXML.jl</a> : XML/HTML handling tools for primates.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/LibExpat.jl">LibExpat.jl</a> : A Julia wrapper for libexpat.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/LightXML.jl">LightXML.jl</a> : A light-weight Julia package for XML based on libxml2.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/mzXML.jl">mzXML.jl</a> : A Julia package for reading mass spectrometry mzXML files.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCloud/XMLDict.jl">XMLDict.jl</a> : This package implements a simple Associative interface for XML documents.</p></li>
+</ul>
+</section>
+<section id="document-processors">
+<h2>Document Processors<a class="headerlink" href="#document-processors" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Document_processor">Document Processors</a> for Word, Excel, PDF files.</p>
+<p>For Document Generators, see <code class="docutils literal notranslate"><span class="pre">Development</span> <span class="pre">tools</span> <span class="pre">|</span> <span class="pre">documentation</span></code>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/MichaelHatherly/CommonMark.jl">CommonMark.jl</a> : A CommonMark-compliant parser for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/queryverse/ExcelReaders.jl">ExcelReaders.jl</a> : A package that provides functionality to read Excel files.</p></li>
+<li><p><a class="reference external" href="https://github.com/sambitdash/LabelNumerals.jl">LabelNumerals.jl</a> : Numbers used as labels like page number like alpha, roman numerals or prefixed like A-1,2 etc.</p></li>
+<li><p><a class="reference external" href="https://github.com/sylvaticus/OdsIO.jl">OdsIO.jl</a> : Open Document Format Spreadsheet (ODS) I/O for Julia using the python ezodf module.</p></li>
+<li><p><a class="reference external" href="https://github.com/sambitdash/PDFIO.jl">PDFIO.jl</a> : PDF Reader Library for native Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/aviks/Taro.jl">Taro.jl</a> : Excel, Word and PDF documents in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/felipenoris/XLSX.jl">XLSX.jl</a> : Excel file reader/writer coded in pure Julia.</p></li>
+</ul>
+<section id="latex">
+<h3>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/oxinabox/Expr2LaTeX.jl">Expr2LaTeX.jl</a> : Take a julia <code class="docutils literal notranslate"><span class="pre">Expr</span></code> and render it as LaTeX.</p></li>
+<li><p><a class="reference external" href="https://github.com/wg030/jlcode">jlcode</a> : A latex package for displaying Julia code with the listings package.</p></li>
+<li><p><a class="reference external" href="https://github.com/rened/LaTeX.jl">LaTeX.jl</a> : Create LaTeX documents from within Julia, including image handling.</p></li>
+<li><p><a class="reference external" href="https://github.com/korsbo/Latexify.jl">Latexify.jl</a> : Convert julia objects to LaTeX equations, arrays or other environments.</p></li>
+<li><p><a class="reference external" href="https://github.com/scheinerman/LatexPrint.jl">LatexPrint.jl</a> : Print Julia objects in a form suitable for LaTeX mathematics mode.</p></li>
+<li><p><a class="reference external" href="https://github.com/stevengj/LaTeXStrings.jl">LaTeXStrings.jl</a> : Convenient input and display of LaTeX equation strings for the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/MichaelHatherly/Tectonic.jl">Tectonic.jl</a> : <a class="reference external" href="https://github.com/tectonic-typesetting/tectonic">tectonic</a> typesetting system.</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/VerTeX.jl">VerTeX.jl</a> : typeset scattered graph data rewriter based on LaTeX nodes.</p></li>
+</ul>
+</section>
+<section id="citation-management">
+<h3>Citation management<a class="headerlink" href="#citation-management" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Humans-of-Julia/Bibliography.jl">Bibliography.jl</a> : a Julia package for handling both import/export from various bibliographic format (e.g. BibTeX).</p></li>
+</ul>
+</section>
+</section>
+<section id="image-formats">
+<h2>Image Formats<a class="headerlink" href="#image-formats" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaIO/AndorSIF.jl">AndorSIF.jl</a> : This implements support for reading <a class="reference external" href="https://andor.oxinst.com/support/">Andor SIF</a> image files in the Julia programming language. Note: The Andor <code class="docutils literal notranslate"><span class="pre">.SIF</span></code> format changes with each version.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaHealth/DICOM.jl">DICOM.jl</a> : DICOM interface for the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/FITSIO.jl">FITSIO.jl</a> : Flexible Image Transport System (FITS) support for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/ImageMagick.jl">ImageMagick.jl</a> : Thin Wrapper for the library ImageMagick, for general-purpose image saving and loading.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaNeuroscience/NIfTI.jl">NIfTI.jl</a> : Julia module for reading <code class="docutils literal notranslate"><span class="pre">NIfTI</span></code> MRI files.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/NRRD.jl">NRRD.jl</a> : Julia support for the Nearly Raw Raster Data (<code class="docutils literal notranslate"><span class="pre">NRRD</span></code>) image file format</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/Netpbm.jl">Netpbm.jl</a> : Julia support for Netpbm (<code class="docutils literal notranslate"><span class="pre">.ppm</span></code>, <code class="docutils literal notranslate"><span class="pre">.pgm</span></code>, <code class="docutils literal notranslate"><span class="pre">.pbm</span></code>).</p></li>
+<li><p><a class="reference external" href="https://github.com/tlnagy/OMETIFF.jl">OMETIFF.jl</a> : I/O operations for OME-<code class="docutils literal notranslate"><span class="pre">TIFF</span></code> files in Julia with a focus on correctness.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/QuartzImageIO.jl">QuartzImageIO.jl</a> : Thin wrapper around OSX’s native image format saving and loading.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="economics-finance.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Economics and Finance</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="graph.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Graph Theory</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

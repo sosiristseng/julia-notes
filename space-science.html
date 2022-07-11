@@ -1,0 +1,599 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Space Science &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="General utilities" href="utilities.html" />
+    <link rel="prev" title="Probability and Statistics" href="prob-stats.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fspace-science.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/space-science.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/space-science.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aeronautics-and-spacecraft">
+   Aeronautics and Spacecraft
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#astronomy-and-astrophysics">
+   Astronomy and astrophysics
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Space Science</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#aeronautics-and-spacecraft">
+   Aeronautics and Spacecraft
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#astronomy-and-astrophysics">
+   Astronomy and astrophysics
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="space-science">
+<h1>Space Science<a class="headerlink" href="#space-science" title="Permalink to this headline">#</a></h1>
+<p>Aeronautics, Astronomy (Astrophysics), <a class="reference external" href="https://en.wikipedia.org/wiki/Outline_of_space_science">Space science</a> related packages.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaSpace">Julia Space</a></p></li>
+<li><p><a class="reference external" href="https://github.com/juliaastro">Julia Astro</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstroSim">Julia AstroSim</a></p></li>
+</ul>
+<section id="aeronautics-and-spacecraft">
+<h2>Aeronautics and Spacecraft<a class="headerlink" href="#aeronautics-and-spacecraft" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Aeronautics">Wikipedia: Aeronautics</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ordovician/Airship.jl">Airship.jl</a> : Julia code for performing temperature, pressure and volume and buoyancy calculations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/SPICE.jl">SPICE.jl</a> : a Julia wrapper for the <a class="reference external" href="https://naif.jpl.nasa.gov/naif/index.html">SPICE toolkit</a> which is provided by NASA’s Navigation and Ancillary Information Facility (NAIF). It provides functionality to read SPICE data files and compute derived observation geometry such as altitude, latitude/longitude and lighting angles.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/abieler/ices-desktop">ices-desktop</a>.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/abieler/Spice.jl">Spice.jl</a> : NASA’s SPICE observation geometry system.</p></li>
+</ul>
+</details>
+</section>
+<section id="astronomy-and-astrophysics">
+<h2>Astronomy and astrophysics<a class="headerlink" href="#astronomy-and-astrophysics" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Astrophysics">Wikipedia: Astrophysics</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/cormullion/Astro.jl">Astro.jl</a> : Jan Meeus astronomical formulas and some time/date code in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSpace/AstrodynamicalModels.jl">AstrodynamicalModels.jl</a>: An extension of <code class="docutils literal notranslate"><span class="pre">ModelingToolkit.jl</span></code> which provides common astrodynamics models.</p></li>
+<li><p><a class="reference external" href="https://github.com/helgee/Astrodynamics.jl">Astrodynamics.jl</a> : An astrodynamics library in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/AstroImages.jl">AstroImages.jl</a> : Plots.jl and Images.jl integration of Astronomical Images (<a class="reference external" href="https://en.wikipedia.org/wiki/FITS">FITS</a>) for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/AstroLib.jl">AstroLib.jl</a> : Bundle of small astronomical and astrophysical routines, based on IDL Astronomy User’s Library (AstroLib).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstroSim/AstroNbodySim.jl">AstroNbodySim.jl</a> : Unitful and differentiable gravitational N-body simulation code in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/Cosmology.jl">Cosmology.jl</a> : Cosmology library for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/DustExtinction.jl">DustExtinction.jl</a> : Models for the interstellar extinction due to dust.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/ERFA.jl">ERFA.jl</a> : Julia wrapper for <a class="reference external" href="https://github.com/liberfa/erfa">liberfa</a> (Essential Routines for Fundamental Astronomy), which is based on the <a class="reference external" href="http://www.iausofa.org">SOFA</a> library.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/FITSIO.jl">FITSIO.jl</a> : Flexible Image Transport System (<a class="reference external" href="https://en.wikipedia.org/wiki/FITS">FITS</a>) support for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/cadojo/GeneralAstrodynamics.jl">GeneralAstrodynamics.jl</a> : common astrodynamics calculations, plotting, and iterative Halo, Kepler, and Lambert solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/crbinz/Interplanetary.jl">Interplanetary.jl</a> : Functions for low-fidelity interplanetary navigation and guidance simulations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/JPLEphemeris.jl">JPLEphemeris.jl</a> : The JPL Development Ephemerides are the results of simulations of the Solar System used for spacecraft navigation and astronomical purposes.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSpace/Orekit.jl">Orekit.jl</a> : Julia wrapper for the <a class="reference external" href="https://www.orekit.org">Orekit</a> astrodynamics library.</p></li>
+<li><p><a class="reference external" href="https://github.com/GenericMappingTools/RemoteS.jl">RemoteS.jl</a> : Remote sensing satellite data processing.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/Reproject.jl">Reproject.jl</a> : Reproject Astronomical Images from one world coordinate to another.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSpace/SatelliteToolbox.jl">SatelliteToolbox.jl</a> : A toolbox for satellite analysis written in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/SkyCoords.jl">SkyCoords.jl</a> : Astronomical coordinate systems in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAstro/WCS.jl">WCS.jl</a> : Astronomical <a class="reference external" href="http://www.atnf.csiro.au/people/mcalabre/WCS/">World Coordinate System</a> library for Julia.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/mweastwood/CasaCore.jl">CasaCore.jl</a> : A Julia wrapper of CasaCore. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/jeff-regier/Celeste.jl">Celeste.jl</a> : Scalable inference for a generative model of astronomical images. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/crbinz/SGP4.jl">SGP4.jl</a> : Julia wrapper for the SGP4 satellite propagation model. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="prob-stats.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Probability and Statistics</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="utilities.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">General utilities</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

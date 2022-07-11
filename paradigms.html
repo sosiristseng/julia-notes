@@ -1,0 +1,825 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Julia Programming Paradigms &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Physics" href="physics.html" />
+    <link rel="prev" title="Optimization" href="optimization.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fparadigms.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/paradigms.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/paradigms.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automata">
+   Automata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-flow">
+   Control Flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reversible-programming">
+     Reversible programming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functional-programming">
+   Functional Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reactive-programming">
+   Reactive Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-by-contract">
+   Design by contract
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpreters">
+   Interpreters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transplier">
+   Transplier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#macro-and-metaprogramming">
+   Macro and Metaprogramming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatic-programming">
+   Automatic Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-analysis">
+   Program Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polymorphism-amd-multiple-dispatch">
+   Polymorphism amd multiple dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-oriented-programming-oop">
+   Object-oriented programming (OOP)
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Julia Programming Paradigms</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automata">
+   Automata
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#control-flow">
+   Control Flow
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reversible-programming">
+     Reversible programming
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functional-programming">
+   Functional Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reactive-programming">
+   Reactive Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-by-contract">
+   Design by contract
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interpreters">
+   Interpreters
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transplier">
+   Transplier
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#macro-and-metaprogramming">
+   Macro and Metaprogramming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#automatic-programming">
+   Automatic Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#program-analysis">
+   Program Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polymorphism-amd-multiple-dispatch">
+   Polymorphism amd multiple dispatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#object-oriented-programming-oop">
+   Object-oriented programming (OOP)
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="julia-programming-paradigms">
+<h1>Julia Programming Paradigms<a class="headerlink" href="#julia-programming-paradigms" title="Permalink to this headline">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Programming_paradigm">Wikipedia: Programming Paradigms</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JulesKouatchou/basic_language_comparison">Basic Language Comparison</a> : Basic Comparison of Various Computing Languages, eg. Python, Julia, Matlab, IDL, R, Java, Scala, C, Fortran.</p></li>
+<li><p><a class="reference external" href="https://github.com/steshaw/plt">Programming Language Theory</a></p></li>
+</ul>
+<section id="automata">
+<h2>Automata<a class="headerlink" href="#automata" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Automata_(computation)">Wikipedia: Automata</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Finite_automata">Wikipedia: Finite Automata</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/BioJulia/Automa.jl">Automa.jl</a> : A julia code generator for regular expressions - this package can do text validation, parsing, and tokenizing based on state machine compiler.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/CodeTracking.jl">CodeTracking.jl</a> : An extension of Julia’s InteractiveUtils library that provides an interface for obtaining strings and expressions of method definitions, method signatures, etc.. designed to work with Revise.jl (for versions v1.1.0 and higher).</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/MacroTools.jl">MacroTools.jl</a> : A library providing helpful tools for writing macros, notably a very simple templating system with some functions</p></li>
+</ul>
+</section>
+<section id="control-flow">
+<h2>Control Flow<a class="headerlink" href="#control-flow" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Control_flow">Wikipedia: Control Flow</a></p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org/en/v1/manual/control-flow/">Julia docs: Control flow</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/rdeits/CommonSubexpressions.jl">CommonSubexpressions.jl</a> : Naïve combined subexpression elimination in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaControl/ControlSystems.jl">ControlSystems.jl</a> : A Control Systems Toolbox for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCollections/IterTools.jl">IterTools.jl</a> : Common functional iterator patterns.</p></li>
+<li><p><a class="reference external" href="https://github.com/jemofthewest/LinearControl.jl">LinearControl.jl</a> : Julia package for analysis and design of control strategies for linear systems.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIO/ProtoBuf.jl">ProtoBuf.jl</a> : A Julia implementation for protocol buffers, a language-neutral, platform-neutral, extensible way of serializing structured data for use in communications protocols, data storage, and more.</p></li>
+</ul>
+<section id="reversible-programming">
+<h3>Reversible programming<a class="headerlink" href="#reversible-programming" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reversible_computing">Wikipedia: reversible programming</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/GiggleLiu/NiLang.jl">NiLang.jl</a> : a reversible domain-specific language (DSL). Every state change can be undone.</p></li>
+</ul>
+</section>
+</section>
+<section id="functional-programming">
+<h2>Functional Programming<a class="headerlink" href="#functional-programming" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Declarative_programming">Wikipedia: Declarative Programming</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Functional_programming">Wikipedia: Functional Programming</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jkrumbiegel/Chain.jl">Chain.jl</a> : A Julia package for piping a value through a series of transformation expressions using a convenient syntax.</p></li>
+<li><p><a class="reference external" href="https://github.com/vtjnash/Glob.jl">Glob.jl</a> : Posix-compliant file name pattern matching.</p></li>
+<li><p><a class="reference external" href="https://github.com/MikeInnes/Lazy.jl">Lazy.jl</a> : Functional programming for Julia with lazily-evaluated lists and a large library of functions for working with them.</p></li>
+<li><p><a class="reference external" href="https://github.com/swadey/LispREPL.jl">LispREPL.jl</a> : REPL for <code class="docutils literal notranslate"><span class="pre">Lisp.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/swadey/LispSyntax.jl">LispSyntax.jl</a> : lisp-like language in julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/pao/Monads.jl">Monads.jl</a> : Monadic expressions and sequences for Julia. <a class="reference external" href="https://monadsjl.readthedocs.org/">hSee the doc</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/oxinabox/Pipe.jl">Pipe.jl</a> : Improved function piping in Julia.</p></li>
+</ul>
+</section>
+<section id="reactive-programming">
+<h2>Reactive Programming<a class="headerlink" href="#reactive-programming" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Reactive_programming">Wikipedia: Reactive Programming</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fonsp/Pluto.jl">Pluto.jl</a> : Simple reactive notebooks for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGizmos/Reactive.jl">Reactive.jl</a> : A package for reactive programming in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/biaslab/Rocket.jl">Rocket.jl</a> : A functional reactive programming extensions library for Julia.</p></li>
+</ul>
+</section>
+<section id="design-by-contract">
+<h2>Design by contract<a class="headerlink" href="#design-by-contract" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Design_by_contract">Wikipedia: Design by contract</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ghaetinger/DesignByContract.jl">DesignByContract.jl</a> : an interface for Design By Contract programming in Julia. See also <a class="reference external" href="https://www.eiffel.org/doc/eiffel/Learning_Eiffel">Eiffel</a>, which first introduced Design By Contract programming.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/eschnett/Contracts.jl">Contracts.jl</a> : macros for pre- and post-conditions in functions. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+<section id="interpreters">
+<h2>Interpreters<a class="headerlink" href="#interpreters" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Interpreters_(computing)">Wikipedia: Interpreters</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDebug/JuliaInterpreter.jl">JuliaInterpreter.jl</a> : Interpreter for Julia code.</p></li>
+</ul>
+</section>
+<section id="transplier">
+<h2>Transplier<a class="headerlink" href="#transplier" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Source-to-source_compiler">Wikipedia: Transpilers</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/kskyten/Transpilers.jl">Transpilers.jl</a> : a common interface for transpiling code into Julia.</p></li>
+</ul>
+</section>
+<section id="macro-and-metaprogramming">
+<h2>Macro and Metaprogramming<a class="headerlink" href="#macro-and-metaprogramming" title="Permalink to this headline">#</a></h2>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Macro_(computer_science)">Wikipedia: Macro</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Metaprogramming">Wikipedia: Metaprogramming</a></p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org/en/v1/manual/metaprogramming/#Metaprogramming">Julia docs: Metaprogramming</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/chakravala/SyntaxTree.jl">SyntaxTree.jl</a> : Toolset for modifying Julia AST and characteristic vlues.</p></li>
+<li><p><a class="reference external" href="https://github.com/StephenVavasis/Unroll.jl">Unroll.jl</a> : A julia macro for unrolling conditional <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.\</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/chakravala/ForceImport.jl">ForceImport.jl</a> : Macro that force imports conflicting methods in Julia modules. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+<section id="automatic-programming">
+<h2>Automatic Programming<a class="headerlink" href="#automatic-programming" title="Permalink to this headline">#</a></h2>
+<p><strong>Resources</strong></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Automatic_programming">Wikipedia: Automatic Programming</a></p>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaLabs/Cassette.jl">Cassette.jl</a> : a Julia package that provides a mechanism for dynamically injecting code transformation passes into Julia’s just-in-time (JIT) compilation cycle, enabling post hoc analysis, optimization, and modification of “Cassette-unaware” Julia programs.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/IRTools.jl">IRTools.jl</a> : Intermediate Representation toolkit to provide a simple and flexible IR format, expressive enough to work with both lowered and typed Julia code, as well as external IRs. It can be used with Julia metaprogramming tools such as Cassette.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/Revise.jl">Revise.jl</a> : Automatically update function definitions in a running Julia session. It will help you keep your sessions running longer, reducing the need to restart Julia whenever you make changes to code.</p></li>
+</ul>
+</section>
+<section id="program-analysis">
+<h2>Program Analysis<a class="headerlink" href="#program-analysis" title="Permalink to this headline">#</a></h2>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Program_analysis">Wikipedia: Program Analysis</a>\</p></li>
+<li><p><a class="reference external" href="https://docs.julialang.org/en/v1/manual/profile/">Julia docs: profiling</a>.</p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/timholy/CallGraphs.jl">CallGraphs.jl</a> : A package for analyzing source-code callgraphs, particularly of Julia’s <code class="docutils literal notranslate"><span class="pre">src/</span></code> directory. The main motivation for this package was to aid in finding all functions that might trigger garbage collection by directly or indirectly calling <code class="docutils literal notranslate"><span class="pre">jl_gc_collect</span></code>; however, the package has broader uses.</p></li>
+<li><p><a class="reference external" href="https://github.com/zenna/Lens.jl">Lens.jl</a> : A simple Julia library to inspect the runtime behaviour of your programs, with minimal interference to the program itself.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCollections/LRUCache.jl">LRUCache.jl</a> : An implementation of a Least Recently Used (LRU) Cache.</p></li>
+<li><p><a class="reference external" href="https://github.com/kimikage/ProfileSVG.jl">ProfileSVG.jl</a> : Write flame graphs to SVG format and explore them interactively in Jupyter, Pluto, etc.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/ProfileView.jl">ProfileView.jl</a> : Visualization of Julia profiling data</p></li>
+<li><p><a class="reference external" href="https://github.com/tkluck/StatProfilerHTML.jl">StatProfilerHTML.jl</a> : Show Julia profiling data in an explorable HTML page.</p></li>
+</ul>
+</section>
+<section id="polymorphism-amd-multiple-dispatch">
+<h2>Polymorphism amd multiple dispatch<a class="headerlink" href="#polymorphism-amd-multiple-dispatch" title="Permalink to this headline">#</a></h2>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Polymorphism_(computer_science)">Wikipedia: Polymorphism</a> and <a class="reference external" href="https://ahsmart.com/pub/holy-traits-design-patterns-and-best-practice-book.html">Holy Traits pattern</a>.</p></li>
+<li><p><a class="reference external" href="http://nbviewer.jupyter.org/gist/StefanKarpinski/b8fe9dbb36c1427b9f22">The Design Impact of Multiple Dispatch</a> presented by StefanKarpinski at Strange Loop on 19-Sep-2013.</p></li>
+<li><p><a class="reference external" href="https://youtu.be/kc9HwsxE1OY">JuliaCon 2019: The Unreasonable Effectiveness of Multiple Dispatch by Stefan Karpinski</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tk3369/BinaryTraits.jl">BinaryTraits.jl</a> : easy-to-use trait library with formal interface specification support.</p></li>
+<li><p><a class="reference external" href="https://github.com/mauro3/SimpleTraits.jl">SimpleTraits.jl</a> : Simple Traits for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/schlichtanders/WhereTraits.jl">WhereTraits.jl</a> : This package exports one powerful macro &#64;traits with which you can extend Julia’s where syntax.</p></li>
+<li><p><a class="reference external" href="https://github.com/ztangent/ValSplit.jl">ValSplit.jl</a> : Compile away dynamic dispatch on Val-typed arguments via value-splitting.</p></li>
+</ul>
+</section>
+<section id="object-oriented-programming-oop">
+<h2>Object-oriented programming (OOP)<a class="headerlink" href="#object-oriented-programming-oop" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Suzhou-tongyuan/TyOOP.jl">TyOOP.jl</a> : Conventional object-oriented programming in Julia without breaking Julia’s core design ideas.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="optimization.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Optimization</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="physics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Physics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

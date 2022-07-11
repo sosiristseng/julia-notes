@@ -1,0 +1,781 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Artificial intelligence &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Algorithms" href="algorithms.html" />
+    <link rel="prev" title="Julia Notes" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fai.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/ai.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/ai.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-frameworks">
+   Machine Learning Frameworks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-packages">
+   Other packages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#julia-interface-for-external-libraries">
+     Julia interface for external libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reinforcement-learning-rl">
+   Reinforcement Learning (RL)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#natural-language-processing-nlp">
+   Natural language processing (NLP)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#english-nlp">
+     English NLP
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speech-recognition">
+   Speech recognition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spiking-neural-network">
+   Spiking neural network
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Artificial intelligence</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#resources">
+   Resources
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#machine-learning-frameworks">
+   Machine Learning Frameworks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-packages">
+   Other packages
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#julia-interface-for-external-libraries">
+     Julia interface for external libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reinforcement-learning-rl">
+   Reinforcement Learning (RL)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#natural-language-processing-nlp">
+   Natural language processing (NLP)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#english-nlp">
+     English NLP
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#speech-recognition">
+   Speech recognition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spiking-neural-network">
+   Spiking neural network
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="artificial-intelligence">
+<h1>Artificial intelligence<a class="headerlink" href="#artificial-intelligence" title="Permalink to this headline">#</a></h1>
+<blockquote>
+<div><p>Artificial intelligence, machine learning, and deep learning frameworks and models.</p>
+</div></blockquote>
+<p><strong>Organization</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://fluxml.ai/">FluxML</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAI">Julia AI</a></p></li>
+<li><p><a class="reference external" href="https://juliaml.github.io">Julia ML</a></p></li>
+</ul>
+<section id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/hal3/ciml">CIML</a> : A Course in Machine Learning. This repository contains the source code for the CIML book (see <a class="reference external" href="http://ciml.info/">http://ciml.info/</a>) as well as any course materials that seem useful (slides, documents, labs, etc.).</p></li>
+<li><p><a class="reference external" href="https://github.com/zer0n/deepframeworks">deepframeworks</a> : An evaluation of Deep Learning Frameworks.</p></li>
+<li><p><a class="reference external" href="https://github.com/thoughtfulml/examples">Examples from <em>Thoughtful Machine Learning</em></a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/nwenzel/Julia_Neural_Network">Julia_Neural_Network</a> : Basic Neural Network written in JuliaLang.</p></li>
+<li><p><a class="reference external" href="https://github.com/evq/juliastreetview">juliastreetview</a> : Updated sample code for the Kaggle Julia Street View Character Recognition Tutorial.</p></li>
+<li><p><a class="reference external" href="https://github.com/soulmachine/machine-learning-cheat-sheet">machine-learning-cheat-sheet</a> : Classical equations and diagrams in machine learning by &#64;soulmachine.</p></li>
+<li><p><a class="reference external" href="https://github.com/tautologico/learning/blob/master/nnets/mlp/julia/mlpnnets.jl">mlpnnets.jl</a> : Feed-forward MLP neural network implementation.</p></li>
+<li><p><a class="reference external" href="https://home.work.caltech.edu/telecourse.html#lectures">A Machine Learning</a> course by Prof. Yaser Abu-Mostafa with videos on Youtube.</p></li>
+</ul>
+</section>
+<section id="machine-learning-frameworks">
+<h2>Machine Learning Frameworks<a class="headerlink" href="#machine-learning-frameworks" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/FluxML/Flux.jl">Flux.jl</a> : A library for machine learning implemented in Julia. See also <a class="reference external" href="https://github.com/FluxML/model-zoo">Flux model-zoo</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/denizyuret/Knet.jl">Knet.jl</a> : Koç University deep learning framework - A machine learning module implemented in Julia. See also <a class="reference external" href="https://github.com/egeersu/KnetNLP">KnetNLP</a> and <a class="reference external" href="https://github.com/egeersu/KnetOnnx.jl">KnetOnnx.jl</a></p></li>
+<li><p><a class="reference external" href="https://github.com/avik-pal/Lux.jl">Lux.jl</a>: a new Julia deep learning framework that decouples models and parameterization (Explicitly Parameterized) using deeply nested named tuples.</p></li>
+<li><p><a class="reference external" href="https://github.com/alan-turing-institute/MLJ.jl">MLJ.jl</a> : A Julia machine learning framework by The Alan Turing Institute.</p></li>
+</ul>
+</section>
+<section id="other-packages">
+<h2>Other packages<a class="headerlink" href="#other-packages" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/IBM/AutoMLPipeline.jl">AutoMLPipeline.jl</a> : a package to create complex ML pipeline structures using simple expressions.</p></li>
+<li><p><a class="reference external" href="https://github.com/dfdx/Boltzmann.jl">Boltzmann.jl</a> : Restricted Boltzmann Machines and Deep Belief Networks in Julia</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaStats/Clustering.jl">Clustering.jl</a> : Basic functions for clustering data ==&gt; k-means, dp-means, etc..</p></li>
+<li><p><a class="reference external" href="https://github.com/ppalmes/CombineML.jl">CombineML.jl</a> : Create ensembles of machine learning models from scikit-learn, caret, and julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/bensadeghi/DecisionTree.jl">DecisionTree.jl</a> : Julia implementation of Decision Tree (CART) and Random Forest algorithms.</p></li>
+<li><p><a class="reference external" href="https://github.com/sisl/Discretizers.jl">Discretizers.jl</a> : A package to support discretization methods and mapping functions for data discretization and label maps.</p></li>
+<li><p><a class="reference external" href="https://github.com/OML-NPA/EasyML.jl">EasyML.jl</a> : Using machine learning in Julia through a graphical user interface.</p></li>
+<li><p><a class="reference external" href="https://github.com/Evovest/EvoTrees.jl">EvoTrees.jl</a> : Boosted decision trees in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/FastAI.jl">FastAI.jl</a> : Repository of best practices for deep learning in Julia, inspired by <a class="reference external" href="https://github.com/fastai/fastai">fastai</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/FluxTraining.jl">FluxTraining.jl</a> : A powerful, extensible neural net training backend for <a class="reference external" href="https://github.com/FluxML/FastAI.jl">FastAI.jl</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/rened/FunctionalDataUtils.jl">FunctionalDataUtils.jl</a> : Utility functions for the FunctionalData package, mainly from the area of computer vision and machine learning.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/GeometricFlux.jl">GeometricFlux.jl</a> : Geometric Deep Learning for <a class="reference external" href="https://github.com/FluxML/Flux.jl">Flux.jl</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/slimgroup/InvertibleNetworks.jl">InvertibleNetworks.jl</a> : Building blocks for invertible neural networks in the Julia programming language.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaGaussianProcesses/KernelFunctions.jl">KernelFunctions.jl</a> : Kernel functions for machine learning.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/LearningStrategies.jl">LearningStrategies.jl</a> : A generic and modular framework for building custom iterative algorithms in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/LossFunctions.jl">LossFunctions.jl</a> : Julia package of loss functions for machine learning. <a class="reference external" href="https://juliaml.github.io/LossFunctions.jl/stable">Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hshindo/Merlin.jl">Merlin.jl</a> : Flexible Deep Learning Framework in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/MLDatasets.jl">MLDatasets.jl</a> : Utility package for accessing common Machine Learning datasets in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/MLLabelUtils.jl">MLLabelUtils.jl</a> : Utility package for working with classification targets and label-encodings.</p></li>
+<li><p><a class="reference external" href="https://github.com/KristofferC/NearestNeighbors.jl">NearestNeighbors.jl</a> : High performance nearest neighbor data structures and algorithms for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/zgornel/NetworkLearning.jl">NetworkLearning.jl</a> : Baseline collective classification library.</p></li>
+<li><p><a class="reference external" href="https://github.com/sisl/NeuralVerification.jl">NeuralVerification.jl</a> : verifying whether a neural network satisfies certain input-output constraints. <a class="reference external" href="https://youtu.be/jyC2fVmHcF8">JuliaCon 2021 ideo</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bcbi/PredictMD.jl">PredictMD.jl</a> : Uniform interface for machine learning in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/mrtzh/PrivateMultiplicativeWeights.jl">PrivateMultiplicativeWeights.jl</a> : <a class="reference external" href="https://www.nist.gov/blogs/cybersecurity-insights/differentially-private-synthetic-data">Differentially private synthetic data</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/mcreel/SimulatedNeuralMoments.jl">SimulatedNeuralMoments.jl</a> : Bayesian and classical estimation and inference based on statistics that are filtered through a trained neural net.</p></li>
+<li><p><a class="reference external" href="https://github.com/lucianolorenti/SpectralClustering.jl">SpectralClustering.jl</a> : Spectral clustering algorithms.</p></li>
+<li><p><a class="reference external" href="https://github.com/trappmartin/SumProductNetworks.jl">SumProductNetworks.jl</a> : Sum-Product Networks (deep probabilistic networks) package in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/ExpandingMan/TheDataMustFlow.jl">TheDataMustFlow.jl</a> : Julia tools for feeding tabular data into machine learning.</p></li>
+<li><p><a class="reference external" href="https://github.com/irhum/TopoChains.jl">TopoChains.jl</a> : A flexible data structure for multi-input multi-output models.</p></li>
+<li><p><a class="reference external" href="https://github.com/andreasnoack/TSVD.jl">TSVD.jl</a> : Truncated singular value decomposition with partial reorthogonalization.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/ValueHistories.jl">ValueHistories.jl</a> : Utilities to efficiently track learning curves or other optimization information.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏗️ <a class="reference external" href="https://github.com/FluxML/XLA.jl">XLATools.jl</a> : Provides access to XLA and the XRT runtime (in Tensorflow), including the ability to build and compile XLA computations using the IRTools format.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/trappmartin/HilbertSchmidtIndependenceCriterion.jl">HSIC.jl</a> : Julia implementations of the Hilbert-Schmidt Independence Criterion (HSIC). (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/pluskid/Mocha.jl">Mocha.jl</a> : A Deep Learning framework for Julia, inspired by the C+- Deep Learning framework Caffe.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/rened/QuickShiftClustering.jl">QuickShiftClustering.jl</a> : Fast hierarchical medoid clustering</p></li>
+</ul>
+</details>
+<section id="julia-interface-for-external-libraries">
+<h3>Julia interface for external libraries<a class="headerlink" href="#julia-interface-for-external-libraries" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/boathit/JuliaTorch">JuliaTorch</a> : Using <a class="reference external" href="https://pytorch.org/">PyTorch</a> in Julia Language via PyCall.</p></li>
+<li><p><a class="reference external" href="https://github.com/innerlee/LIBLINEAR.jl">LIBLINEAR.jl</a> : Julia binding to <a class="reference external" href="https://www.csie.ntu.edu.tw/~cjlin/liblinear/">Liblinear</a>, a library for Large Linear Classification.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaML/LIBSVM.jl">LIBSVM.jl</a> : Julia bindings for <a class="reference external" href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/">LIBSVM</a> C library.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/ONNX.jl">ONNX.jl</a> : Read ONNX graphs and load these models in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/jw3126/ONNXRunTime.jl">ONNXRunTime.jl</a> : Julia bindings for the <a class="reference external" href="https://github.com/microsoft/onnxruntime">onnxruntime</a> to perform inference.</p></li>
+<li><p><a class="reference external" href="https://github.com/cstjean/ScikitLearn.jl">ScikitLearn.jl</a> : Julia implementation of the scikit-learn API via <code class="docutils literal notranslate"><span class="pre">PyCall.jl</span></code>. <a class="reference external" href="https://scikit-learn.org/stable/tutorial/machine_learning_map/">Cheatsheet</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/dmlc/XGBoost.jl">XGBoost.jl</a> : a Julia interface of <a class="reference external" href="https://github.com/dmlc/xgboost">XGBoost</a>, an efficient and scalable implementation of distributed gradient boosting framework.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/ayush1999/Keras.jl">ayush1999 | Keras.jl</a> : A package built atop Flux to directly load Keras(.py) models into <code class="docutils literal notranslate"><span class="pre">Flux.jl</span></code>.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/invenia/Keras.jl">Keras.jl</a> &#64; invenia: A julia wrapper for <a class="reference external" href="http://keras.io">keras.io</a>.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/malmaud/TensorFlow.jl">TensorFlow.jl</a> : A Julia wrapper for TensorFlow, the open source machine learning framework from Google.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://mxnet.apache.org/versions/1.8.0/api/julia">MXNet</a> : Flexible and efficient deep learning in Julia.</p></li>
+</ul>
+</details>
+</section>
+</section>
+<section id="reinforcement-learning-rl">
+<h2>Reinforcement Learning (RL)<a class="headerlink" href="#reinforcement-learning-rl" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Reinforcement_learning">Wikipedia: Reinforcement Learning</a></p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaReinforcementLearning/ReinforcementLearning.jl">ReinforcementLearning.jl</a> : A Reinforcement Learning package with an <a class="reference external" href="https://github.com/JuliaReinforcementLearning/ReinforcementLearningAnIntroduction.jl">introductary book</a>.</p></li>
+</ul>
+</section>
+<section id="natural-language-processing-nlp">
+<h2>Natural language processing (NLP)<a class="headerlink" href="#natural-language-processing-nlp" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Natural_language_processing">Wikipedia: Natural language processing</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText">JuliaText organization</a></p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/sbos/AdaGram.jl">AdaGram.jl</a> : Adaptive Skip-gram implementation in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/zgornel/BKTrees.jl">BKTrees.jl</a> : Julia implementation of Burkhard-Keller trees.</p></li>
+<li><p><a class="reference external" href="https://github.com/zgornel/ConceptnetNumberbatch.jl">ConceptnetNumberbatch.jl</a> : Julia interface to <a class="reference external" href="https://github.com/commonsense/conceptnet-numberbatch">ConceptnetNumberbatch</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText/CorpusLoaders.jl">CorpusLoaders.jl</a> : A variety of loaders for various NLP corpora.</p></li>
+<li><p><a class="reference external" href="https://github.com/dellison/DependencyTrees.jl">DependencyTrees.jl</a> : A package for dependency parsing.</p></li>
+<li><p><a class="reference external" href="https://github.com/domluna/GloVe.jl">GloVe.jl</a> : Implements Global Word Vectors.</p></li>
+<li><p><a class="reference external" href="https://github.com/zgornel/Glowe.jl">Glowe.jl</a> : Julia interface to Global Word Vectors.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText/Languages.jl">Languages.jl</a> : A package for working with human languages.</p></li>
+<li><p><a class="reference external" href="https://github.com/rawrgrr/Levenshtein.jl">Levenshtein.jl</a> : Levenshtein distance between two strings.</p></li>
+<li><p><a class="reference external" href="https://github.com/andrewcooke/ParserCombinator.jl">ParserCombinator.jl</a> : A parser combinator library.</p></li>
+<li><p><a class="reference external" href="https://github.com/zgornel/StringAnalysis.jl">StringAnalysis.jl</a> : A hard fork of the <a class="reference external" href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> package, designed to provide a richer, faster and orthogonal API.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText/TextAnalysis.jl">TextAnalysis.jl</a> : A Julia package for text analysis.</p></li>
+<li><p><a class="reference external" href="https://github.com/slycoder/TopicModels.jl">TopicModels.jl</a> : Topic models are Bayesian, hierarchical mixture models of discrete data.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText/Word2Vec.jl">Word2Vec.jl</a> : Julia interface to word2vec.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaText/WordNet.jl">WordNet.jl</a> : A Julia package for Princeton’s WordNet®.</p></li>
+</ul>
+<section id="english-nlp">
+<h3>English NLP<a class="headerlink" href="#english-nlp" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/TotalVerb/EnglishText.jl">EnglishText.jl</a> : Utilities for English-language quirks in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/TorkelE/Why.jl">Why.jl</a> : A simple function, <code class="docutils literal notranslate"><span class="pre">why()</span></code>, which gives randomly generated answers.</p></li>
+</ul>
+</section>
+</section>
+<section id="speech-recognition">
+<h2>Speech recognition<a class="headerlink" href="#speech-recognition" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDSP/MFCC.jl">MFCC.jl</a> : Standard Mel Frequency Cepstral Coefficients feature extraction for speech analysis.</p></li>
+<li><p><a class="reference external" href="https://github.com/idiap/TIDIGITSRecipe.jl">TIDIGITSRecipe.jl</a> : A Julia recipe for training an ASR system using the <a class="reference external" href="https://catalog.ldc.upenn.edu/LDC93S10">TIDIGITS database</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/r9y9/WORLD.jl">WORLD.jl</a> : A Julia wrapper for <a class="reference external" href="https://github.com/mmorise/World">WORLD</a> - a high-quality speech analysis, modification and synthesis system.</p></li>
+</ul>
+</section>
+<section id="spiking-neural-network">
+<h2>Spiking neural network<a class="headerlink" href="#spiking-neural-network" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Spiking_neural_network">Wikipedia: Spiking neural network</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/wsphillips/Conductor.jl">Conductor.jl</a> : a Julia-based neuronal network simulator engine.</p></li>
+<li><p><a class="reference external" href="https://github.com/Dhruva2/NeuronBuilder.jl">NeuronBuilder.jl</a> : building small networks of detailed, conductance-based neurons out of ion channels and synapses.</p></li>
+<li><p><a class="reference external" href="https://github.com/Datseris/SpikeSynchrony.jl">SpikeSynchrony.jl</a> : Measuring distances, synchrony and correlation between spike trains.</p></li>
+<li><p><a class="reference external" href="https://github.com/AStupidBear/SpikingNeuralNetworks.jl">SpikingNeuralNetworks.jl</a> : Julia Spiking Neural Network Simulator.</p></li>
+<li><p><a class="reference external" href="https://github.com/leaflabs/WaspNet.jl">WaspNet.jl</a> : fixed-time-step simulations of primarily spiking neural networks (SNNs).</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Julia Notes</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="algorithms.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Algorithms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

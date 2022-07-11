@@ -1,0 +1,678 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Optimization &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Julia Programming Paradigms" href="paradigms.html" />
+    <link rel="prev" title="Modeling and simulation" href="modeling.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="math.html">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Foptimization.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/optimization.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/optimization.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frameworks">
+   Frameworks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bindings-for-external-solvers">
+   Bindings for external solvers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-programming-and-optimization">
+   Linear Programming and Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-programming">
+   Nonlinear Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misc">
+   Misc
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Optimization</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frameworks">
+   Frameworks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bindings-for-external-solvers">
+   Bindings for external solvers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-programming-and-optimization">
+   Linear Programming and Optimization
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonlinear-programming">
+   Nonlinear Programming
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misc">
+   Misc
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="optimization">
+<h1>Optimization<a class="headerlink" href="#optimization" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Mathematical_optimization">Mathematical Optimization</a> packages in Julia</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jump-dev">JuMP-dev</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaOpt">Julia Opt</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers">Julia Smooth Optimizers</a></p></li>
+</ul>
+<section id="frameworks">
+<h2>Frameworks<a class="headerlink" href="#frameworks" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jump-dev/JuMP.jl">JuMP.jl</a> : A modeling language for Mathematical Optimization (linear, mixed-integer, conic, semidefinite, nonlinear).</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/GalacticOptim.jl">GalacticOptim.jl</a> : <code class="docutils literal notranslate"><span class="pre">GalacticOptim.jl</span></code> seeks to bring together all of the optimization packages it can find, local and global, into one unified Julia interface.</p></li>
+</ul>
+</section>
+<section id="bindings-for-external-solvers">
+<h2>Bindings for external solvers<a class="headerlink" href="#bindings-for-external-solvers" title="Permalink to this headline">#</a></h2>
+<blockquote>
+<div><p>Some of them require paid license to work.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/AmplNLReader.jl">AmplNLReader.jl</a> : A Julia Interface to AMPL.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/AmplNLWriter.jl">AmplNLWriter.jl</a> : an interface between <code class="docutils literal notranslate"><span class="pre">MathOptInterface.jl</span></code> and AMPL-enabled solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/AmplNLWriter.jl">AmplNLWriter.jl</a> : Julia interface to AMPL-enabled solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/Cbc.jl">Cbc.jl</a> : Interface to the Coin-OR Cbc solver for mixed-integer programming.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/CPLEX.jl">CPLEX.jl</a> : An interface for using IBM’s <a class="reference external" href="https://www.ibm.com/products/ilog-cplex-optimization-studio">CPLEX Optimizer</a>™ from the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/CSDP.jl">CSDP.jl</a> : Julia wrapper to <a class="reference external" href="https://projects.coin-or.org/Csdp/">CSDP</a> semidefinite programming solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/CUTEst.jl">CUTEst.jl</a> : Julia interface for <a class="reference external" href="https://github.com/ralna/CUTEst/wiki">CUTEst</a>, a repository of constrained and unconstrained nonlinear programming problems for testing and comparing optimization algorithms.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/ECOS.jl">ECOS.jl</a> : Julia wrapper for the ECOS conic optimization solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/GLPK.jl">GLPK.jl</a> : GLPK wrapper module for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaOpt/GLPKMathProgInterface.jl">GLPKMathProgInterface.jl</a> : Interface between the GLPK.jl wrapper and MathProgBase.jl.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/Gurobi.jl">Gurobi.jl</a> : a Julia interface for the commercial <a class="reference external" href="https://www.gurobi.com/">Gurobi</a> Optimizer.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/HSL.jl">HSL.jl</a> : Julia interface to the HSL Mathematical Software Library.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/Ipopt.jl">Ipopt.jl</a> : Julia interface to the <a class="reference external" href="https://coin-or.github.io/Ipopt/">Ipopt</a> nonlinear solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/KNITRO.jl">KNITRO.jl</a> : Julia interface for <a class="reference external" href="https://www.artelys.com/knitro">KNITRO solver</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/MOSEK/Mosek.jl">Mosek.jl</a> : Interface to the Mosek solver in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/odow/NEOSServer.jl">NEOSServer.jl</a> : A Julia interface for the NEOS Optimisation Server.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaOpt/NLopt.jl">NLopt.jl</a> : Package to call the <a class="reference external" href="https://nlopt.readthedocs.io/en/latest/">NLopt</a> nonlinear-optimization library from the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/SCS.jl">SCS.jl</a> : Julia Wrapper for <a class="reference external" href="https://github.com/cvxgrp/scs">SCS</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/Xpress.jl">Xpress.jl</a> : A Julia interface for the <a class="reference external" href="https://www.fico.com/products/fico-xpress-solver">FICO Xpress solver</a>.</p></li>
+</ul>
+</section>
+<section id="linear-programming-and-optimization">
+<h2>Linear Programming and Optimization<a class="headerlink" href="#linear-programming-and-optimization" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Linear_programming">Wikipedia: Linear Programming-Optimization</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jump-dev/Clp.jl">Clp.jl</a> : Interface to the Coin-OR Linear Programming solver (CLP)</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/NLPModels.jl">NLPModels.jl</a> : Data Structures for Optimization Models.</p></li>
+<li><p><a class="reference external" href="https://github.com/joehuchette/PiecewiseLinearOpt.jl">PiecewiseLinearOpt.jl</a> : Optimizing over piecewise linear functions.</p></li>
+<li><p><a class="reference external" href="https://github.com/ds4dm/Tulip.jl">Tulip.jl</a> : is an open-source interior-point solver for linear optimization, written in pure Julia. It implements the homogeneous primal-dual interior-point algorithm with multiple centrality corrections, and therefore handles unbounded and infeasible problems.</p></li>
+</ul>
+</section>
+<section id="nonlinear-programming">
+<h2>Nonlinear Programming<a class="headerlink" href="#nonlinear-programming" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Nonlinear_programming">Wikipedia: Nonlinear Programming</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/joehuchette/BARON.jl">BARON.jl</a> : A wrapper for the BARON mixed-integer nonlinear programming solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/mlubin/ConicNonlinearBridge.jl">ConicNonlinearBridge.jl</a> : Wrapper to solve <a class="reference external" href="https://mathprogbasejl.readthedocs.org/en/latest/conic.html">conic</a> optimization problems with derivative-based nonlinear solvers.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/Convex.jl">Convex.jl</a> : A Julia library for mathematical programming that makes it easy to formulate and fast to solve nonlinear convex optimization problems.</p></li>
+<li><p><a class="reference external" href="https://github.com/PSORLab/EAGO.jl">EAGO.jl</a> : A development environment for robust and global optimization. EAGO stands for Easy-Advanced Global Optimization.</p></li>
+</ul>
+</section>
+<section id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/sisl/AutomotiveDrivingModels.jl">AutomotiveDrivingModels.jl</a> : For car encounter models.</p></li>
+<li><p><a class="reference external" href="https://github.com/robertfeldt/BlackBoxOptim.jl">BlackBoxOptim.jl</a> : An experimental, work-in-progress global optimization framework for Julia, supporting both multi- and single-objective optimization problems, focused on (meta-)heuristic/stochastic algorithms (DE, PSO, CMA-ES etc).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIntervals/CharibdeOptim.jl">CharibdeOptim.jl</a> : A Julia implementation of the cooperative solver Charibde in which it uses two parallel running algorithms <em>Differential Evolution</em> and <em>Interval Branch &amp; Contract algorithm</em> to achieve solution of any difficult problem.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIntervals/IntervalConstraintProgramming.jl">ConstraintProgramming.jl</a> :  Calculates the feasible region for a set of real-valued inequalities with Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/joehuchette/CutPools.jl">CutPools.jl</a> : Pools of cutting planes for JuMP models.</p></li>
+<li><p><a class="reference external" href="https://github.com/blegat/EntropicCone.jl">EntropicCone.jl</a> : Entropic Cone approximation and optimization.</p></li>
+<li><p><a class="reference external" href="https://github.com/baggepinnen/Hyperopt.jl">Hyperopt.jl</a> : A package to perform hyperparameter optimization. Currently supports random search, latin hypercube sampling and Bayesian optimization.</p></li>
+<li><p><a class="reference external" href="https://github.com/pulsipher/InfiniteOpt.jl">InfiniteOpt.jl</a> : An interface for infinite-dimensional optimization problems. e.g. stochastic programming, dynamic programming, space-time optimization. See also the <a class="reference external" href="https://www.youtube.com/watch?v=q5ETFLZbxiU">YouTube video</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/LinearOperators.jl">LinearOperators.jl</a> : Linear Operators for Julia. Operators behave like matrices but are defined by their effect when applied to a vector.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaNLSolvers/LsqFit.jl">LsqFit.jl</a> : Simple curve fitting functionality from <a class="reference external" href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> has been moved into its own package.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaManifolds/Manopt.jl">Manopt.jl</a> : Optimization on Manifolds in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaOpt/MathProgBase.jl">MathProgBase.jl</a> : Solver-independent functions (incl. linprog and mixintprog) and low-level interface for Mathematical Programming.</p></li>
+<li><p><a class="reference external" href="https://github.com/rdeits/Mayday.jl">Mayday.jl</a> : Sums-of-Squares optimization through semidefinite programming (SDP) in Julia, powered by JuMP.</p></li>
+<li><p><a class="reference external" href="https://github.com/jmejia8/Metaheuristics.jl">Metaheuristics.jl</a> : High performance metaheuristics for optimization purely coded in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaNLSolvers/Optim.jl">Optim.jl</a> : A basic optimization algorithms implementation.</p></li>
+<li><p><a class="reference external" href="https://github.com/oxfordcontrol/OSQP.jl">OSQP.jl</a> : A Julia wrapper for the Operator Splitting Quadratic Program (OSQP) solver is a numerical optimization package.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/PolyJuMP.jl">PolyJuMP.jl</a> : A JuMP extension for Polynomial Optimization.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/QuadDIRECT.jl">QuadDIRECT.jl</a> : Global optimization without derivatives.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaOpt/SemidefiniteModels.jl">SemidefiniteModels</a> : A MathProgBase extension for Semidefinite Modelling.</p></li>
+<li><p><a class="reference external" href="https://github.com/floswald/SMM.jl">SMM.jl</a> : Simulated Method of Moments for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaStochOpt/StructDualDynProg.jl">StructDualDynProg.jl</a> : Implementation of SDDP (Stochastic Dual Dynamic Programming) using the StructJuMP modeling interface.</p></li>
+<li><p><a class="reference external" href="https://github.com/joehuchette/StructJuMP.jl">StructJuMP.jl</a> : A block-structured optimization framework for JuMP.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/SumOfSquares.jl">SumOfSquares.jl</a> : Sum of Squares Programming for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/Surrogates.jl">Surrogates.jl</a> : Surrogate modeling and optimization.</p></li>
+<li><p><a class="reference external" href="https://github.com/chkwon/TrafficAssignment.jl">TrafficAssignment.jl</a> : A package for traffic assignment that loads the network data and finds the user equilibrium traffic pattern.</p></li>
+</ul>
+<hr class="docutils" />
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/IainNZ/JuMPeR.jl">JuMPeR.jl</a> : Julia for Mathematical Programming (JuMP) extension for Robust optimization. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/FugroRoames/Munkres.jl">Munkres.jl</a> : Munkres algorithm for the optimal assignment problem. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/phrb/NODAL.jl">NODAL.jl</a> : is an Open Distributed Autotuning Library in Julia. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/ahmadreza-marandi/Polyopt.jl">Polyopt.jl</a> : Julia package for polynomial optimization using semidefinite programming, with some <a class="reference external" href="https://github.com/MOSEK/Polyopt.jl/tree/master/notebooks">presentation notebooks</a> of an optimization package.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/johnmyleswhite/Ranking.jl">Ranking.jl</a> : Tools for ranking in Julia. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/IainNZ/RationalSimplex.jl">RationalSimplex.jl</a> : Pure Julia implementation of the simplex algorithm. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="modeling.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Modeling and simulation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="paradigms.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Julia Programming Paradigms</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

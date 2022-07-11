@@ -1,0 +1,1188 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Mathematics &#8212; Julia Notes</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Modeling and simulation" href="modeling.html" />
+    <link rel="prev" title="Interoperativity" href="interop.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Julia Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="ai.html">
+   Artificial intelligence
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="algorithms.html">
+   Algorithms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio-video.html">
+   Audio and Video processing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="biology.html">
+   Biology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chemistry.html">
+   Chemistry
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="concurrency.html">
+   Concurrency
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-science.html">
+   Data Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="data-structures.html">
+   Data Structures
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="dev-tools.html">
+   Development tools
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="earth.html">
+   Earth Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="economics-finance.html">
+   Economics and Finance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fileio.html">
+   File I/O
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graph.html">
+   Graph Theory
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="graphics.html">
+   Graphics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hardware.html">
+   Hardware and Robotics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="interop.html">
+   Interoperativity
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Mathematics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modeling.html">
+   Modeling and simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="optimization.html">
+   Optimization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="paradigms.html">
+   Julia Programming Paradigms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="physics.html">
+   Physics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="prob-stats.html">
+   Probability and Statistics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="space-science.html">
+   Space Science
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="utilities.html">
+   General utilities
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="visualization.html">
+   Visualization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="web.html">
+   Web technology
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/issues/new?title=Issue%20on%20page%20%2Fmath.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/sosiristseng/julia-notes/edit/main/docs/math.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/math.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-mathematics-packages">
+   General Mathematics packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cryptography">
+   Cryptography
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cryptocurrency">
+     Cryptocurrency
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-arithmetic">
+   Computer Arithmetic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#floating-point">
+     Floating Point
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebra">
+   Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boolean-algebra">
+     Boolean Algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-analysis">
+   Numerical Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-algebra">
+   Linear Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#array-data-structures">
+     Array Data Structures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrices">
+     Matrices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sparse-matrices">
+       Sparse Matrices
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors">
+     Tensors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#digital-signal-processing-dsp">
+   Digital signal processing (DSP)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-fourier-transform-fft">
+     Fast Fourier transform (FFT)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-computation">
+   Symbolic Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomials">
+   Polynomials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculus">
+   Calculus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-differentiation">
+     Automatic Differentiation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematical-analysis">
+   Mathematical Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-math">
+   Discrete math
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-theory">
+     Graph Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-theory">
+   Information theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#puzzles">
+   Puzzles
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Mathematics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-mathematics-packages">
+   General Mathematics packages
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cryptography">
+   Cryptography
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cryptocurrency">
+     Cryptocurrency
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computer-arithmetic">
+   Computer Arithmetic
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#floating-point">
+     Floating Point
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#algebra">
+   Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boolean-algebra">
+     Boolean Algebra
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numerical-analysis">
+   Numerical Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-algebra">
+   Linear Algebra
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#array-data-structures">
+     Array Data Structures
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#matrices">
+     Matrices
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sparse-matrices">
+       Sparse Matrices
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensors">
+     Tensors
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#digital-signal-processing-dsp">
+   Digital signal processing (DSP)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fast-fourier-transform-fft">
+     Fast Fourier transform (FFT)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symbolic-computation">
+   Symbolic Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#polynomials">
+   Polynomials
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#functions">
+   Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculus">
+   Calculus
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#automatic-differentiation">
+     Automatic Differentiation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mathematical-analysis">
+   Mathematical Analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-math">
+   Discrete math
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#graph-theory">
+     Graph Theory
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#information-theory">
+   Information theory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#puzzles">
+   Puzzles
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="mathematics">
+<h1>Mathematics<a class="headerlink" href="#mathematics" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Lists_of_mathematics_topics">Mathematical</a> libraries/packages, and related resources in Julia.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation">Julia Approximation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCrypto">Julia Crypto</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLinearAlgebra">Julia Linear Algebra</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath">Julia Math</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/">Julia Matrices</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff">Julia Diff</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse">Julia sparse</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDSP">Julia DSP</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays">Julia Arrays</a></p></li>
+</ul>
+<section id="general-mathematics-packages">
+<h2>General Mathematics packages<a class="headerlink" href="#general-mathematics-packages" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaMath/FastPow.jl">FastPow.jl</a> : <code class="docutils literal notranslate"><span class="pre">&#64;fastpow</span></code> speeds up the computation of integer powers in any Julia expression by transforming them into optimal sequences of multiplications, with a slight sacrifice in accuracy.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/GSL.jl">GSL.jl</a> : Julia interface to the GNU Scientific Library - <a class="reference external" href="https://www.gnu.org/software/gsl/doc/html/index.html">GSL</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/thofma/Hecke.jl">Hecke.jl</a> : Computational algebraic number theory.</p></li>
+<li><p><a class="reference external" href="https://github.com/GiovineItalia/Hexagons.jl">Hexagons.jl</a> : Useful tools for working with hexagonal grids.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaManifolds/Manifolds.jl">Manifolds.jl</a> : a unified interface to define and use manifolds as well as a library of manifolds to use for your projects.</p></li>
+<li><p><a class="reference external" href="https://github.com/andrioni/MPFR.jl">MPFR.jl</a> : A Julia package for the GNU MPFR library.</p></li>
+<li><p><a class="reference external" href="https://github.com/mlubin/NaNMath.jl">NaNMath.jl</a> : Implementations of basic math functions which return NaN instead of throwing a <code class="docutils literal notranslate"><span class="pre">DomainError</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/dmbates/NLreg.jl">NLreg.jl</a> : Nonlinear regression in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/NonlinearSolve.jl">NonlinearSolve.jl</a> : Fast implementations of root finding algorithms in Julia using the SciML common interface.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Tau.jl">Tau.jl</a> : A simple module providing definition of the Tau constant = 2pi.</p></li>
+<li><p><a class="reference external" href="https://github.com/dillondaudert/UMAP.jl">UMAP.jl</a> : Uniform Manifold Approximation and Projection (<a class="reference external" href="https://arxiv.org/abs/1802.03426">UMAP</a>) implementation in Julia.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/johnmyleswhite/ContinuedFractions.jl">ContinuedFractions.jl</a> : Types and functions for working with continued fractions in Julia. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+<section id="cryptography">
+<h2>Cryptography<a class="headerlink" href="#cryptography" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Cryptography">Wikipedia: Cryptography</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaLang/MbedTLS.jl">MbedTLS.jl</a> : Wrapper around <a class="reference external" href="https://tls.mbed.org/">mbedtls</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCrypto/MD5.jl">MD5.jl</a> : A pure julia MD5 implementation.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCrypto/Nettle.jl">Nettle.jl</a> : is a simple wrapper around libnettle, a cryptographic library, providing MD5, SHA1, SHA2 hashing and HMAC functionality, as well as AES encryption/decryption</p></li>
+<li><p><a class="reference external" href="https://github.com/andreasnoackjensen/RNGTest.jl">RNGTest.jl</a> : A package that is a Julia interface to the test suite TestU01 of Pierre l’Ecuyer to test random numbers.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCrypto/SHA.jl">SHA.jl</a> : a performant, 100% native-julia SHA-1, SHA-2 224, 256, 384 and 512, and SHA-3 224, 256, 384 and 512 functions.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCrypto/SEAL.jl">SEAL.jl</a> : wrapping the Microsoft SEAL library for homomorphic encryption</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏗️ <a class="reference external" href="https://github.com/JuliaCrypto/ToyFHE.jl">ToyFHE.jl</a> : Toy implementation of <a class="reference external" href="https://en.wikipedia.org/wiki/Homomorphic_encryption">FHE algorithms</a>.</p></li>
+</ul>
+</details>
+<section id="cryptocurrency">
+<h3>Cryptocurrency<a class="headerlink" href="#cryptocurrency" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Julia-Blockchain/LearnBlockChain">LearnBlockChain</a> : Block chain <a class="reference external" href="https://www.youtube.com/watch?v=eDELq53TpNc">tutorial</a> in Julia.</p></li>
+</ul>
+</section>
+</section>
+<section id="computer-arithmetic">
+<h2>Computer Arithmetic<a class="headerlink" href="#computer-arithmetic" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Computer_arithmetic">Wikipedia: Computer Arithmetic</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/williamstein/ent">Elementary Number Theory</a> : Primes, Congruences, and Secrets.</p></li>
+<li><p><a class="reference external" href="https://github.com/tshort/Calc.jl">Calc.jl</a> : An RPN calculator for the Julia REPL.</p></li>
+<li><p><a class="reference external" href="https://github.com/jlapeyre/DeepConvert.jl">DeepConvert.jl</a> : This package provides convenient literal construction of values of large data types.</p></li>
+</ul>
+<section id="floating-point">
+<h3>Floating Point<a class="headerlink" href="#floating-point" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Floating_point">Wikipedia: Floating Point</a></p>
+<p>For floating-point datatypes, see <a class="reference external" href="./data-structures.md#numeric-data-types">Data Types</a> Section.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JeffreySarnoff/ErrorfreeArithmetic.jl">ErrorfreeArithmetic.jl</a> : Error-free transformations for arithmetic ops.</p></li>
+<li><p><a class="reference external" href="https://github.com/JeffreySarnoff/FastRounding.jl">FastRounding.jl</a> : Faster directed rounding for inline arithmetic.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIntervals/ValidatedNumerics.jl">ValidatedNumerics.jl</a> : Rigorous floating-point calculations via interval arithmetic.</p></li>
+</ul>
+</section>
+</section>
+<section id="algebra">
+<h2>Algebra<a class="headerlink" href="#algebra" title="Permalink to this headline">#</a></h2>
+<p>Resources: <a class="reference external" href="https://github.com/williamstein/adeles">Ideles adeles algebraic number theory</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/jhlq/Equations.jl">Equations.jl</a> : Derive mathematical relations.</p></li>
+<li><p><a class="reference external" href="https://github.com/thofma/Hecke.jl">Hecke.jl</a> : A package for algebraic number theory that works on top of <code class="docutils literal notranslate"><span class="pre">Nemo.jl</span></code> by Tommy Hofmann and Claus Fieker.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/HemirealFactorizations.jl">HemirealFactorization.jl</a> : Matrix factorizations over the hemireals.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/HemirealNumbers.jl">HemirealNumbers.jl</a> : Implementation of hemireal arithmetic for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/scheinerman/Mods.jl">Mods.jl</a> : Easy modular arithmetic for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/Nemocas/Nemo.jl">Nemo.jl</a> : A computer algebra package for the Julia programming language.</p></li>
+<li><p><a class="reference external" href="https://github.com/MurrayT/OEIS.jl">OEIS.jl</a> : A basic wrapper to allow access to <a class="reference external" href="http://oeis.org/">OEIS</a> integer sequences from within Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/ViralBShah/SemiringAlgebra.jl">SemiringAlgebra.jl</a> : <a class="reference external" href="https://dspace.mit.edu/openaccess-disseminate/1721.1/115964">Semiring Algebra</a>.</p></li>
+</ul>
+<section id="boolean-algebra">
+<h3>Boolean Algebra<a class="headerlink" href="#boolean-algebra" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Boolean_algebra">Boolean Algebra</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/scheinerman/ShowSet.jl">ShowSet.jl</a> : Nicer output for Set and IntSet objects.</p></li>
+</ul>
+</section>
+</section>
+<section id="numerical-analysis">
+<h2>Numerical Analysis<a class="headerlink" href="#numerical-analysis" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Numerical_analysis">Numerical Analysis</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaSmoothOptimizers/AMD.jl">AMD.jl</a> : Approximate Minimum Degree (AMD) Ordering in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/floswald/ApproXD.jl">ApproXD.jl</a> : B-splines and linear high-dimensional approximators in multiple dimensions for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/kbarbary/Dierckx.jl">Dierckx.jl</a>: Julia package for 1-d and 2-d splines, a wrapper for the dierckx Fortran library.</p></li>
+<li><p><a class="reference external" href="https://github.com/guilhermebodin/Dualization.jl">Dualization.jl</a> : Automatic dualization feature for MathOptInterface.jl conic optimization problems.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/FastGaussQuadrature.jl">FastGaussQuadrature.jl</a> : A Julia package to compute n-point Gauss quadrature nodes and weights to 16-digit accuracy and in O(n) time.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/FastTransforms.jl">FastTransforms.jl</a> : Julia package for fast orthogonal polynomial transforms.</p></li>
+<li><p><a class="reference external" href="https://github.com/sisl/GridInterpolations.jl">GridInterpolations.jl</a> : Multi-dimensional grid interpolation in arbitrary dimensions on a recti-linear grid.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Interpolations.jl">Interpolations.jl</a> : Fast, continuous interpolation of discrete datasets in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/jump-dev/KNITRO.jl">Knitro.jl</a> : Julia interface to the <a class="reference external" href="https://www.artelys.com/knitro">Knitro</a> solver.</p></li>
+<li><p><a class="reference external" href="https://github.com/cdsousa/LinearExpressions.jl">LinearExpressions.jl</a> : Linear symbolic expressions for the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/mrtkp9993/NumericalAlgorithms.jl">NumericalAlgorithms.jl</a> : Statistics &amp; Numerical algorithms implemented in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/gwater/PiecewiseInterpolation.jl">PiecewiseInterpolation.jl</a> : A simple interface for interpolations on timeseries with first order discontinuities (using <code class="docutils literal notranslate"><span class="pre">Dierckx.jl</span></code>).</p></li>
+<li><p><a class="reference external" href="https://github.com/JeffreySarnoff/RollingFunctions.jl">RollingFunctions.jl</a> : Roll a function over data, run a statistic along a <code class="docutils literal notranslate"><span class="pre">weighted</span></code> data window.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDynamics/Simplices.jl">Simplices.jl</a> : Compute exact simplex intersections in N dimensions.</p></li>
+<li><p><a class="reference external" href="https://github.com/stevengj/Sobol.jl">Sobol.jl</a> : is a generation of Sobol low-discrepancy sequence (LDS) implementation, that generates <strong>quasi-random</strong> sequences of points in N dimensions which are equally distributed over an N-dimensional hypercube.</p></li>
+</ul>
+</section>
+<section id="linear-algebra">
+<h2>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Linear_algebra">Linear Algebra</a></p>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.youtube.com/channel/UCizxnsw19qcTOdJdIJVtl0Q">Video of Andreas Noack and Jiahao Chen</a> speaking at the Linear Algebra and Optimization seminar at the Institute for Computational and Mathematical Engineering at Stanford.</p></li>
+<li><p>Learn the <a class="reference external" href="https://github.com/ULAFF/notebooks">theory of linear algebra</a> in Python Jupyter notebooks.</p></li>
+<li><p><a class="reference external" href="https://nbviewer.org/url/math.mit.edu/~stevenj/18.335/Matrix-multiplication-experiments.ipynb">Benchmarking Matrix Multiplication</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/chakravala/DirectSum.jl">DirectSum.jl</a> : Abstract tangent bundle vector space type operations.</p></li>
+<li><p><a class="reference external" href="https://github.com/gragusa/Divergences.jl">Divergences.jl</a> : A Julia package that makes it easy to evaluate divergence measures between two vectors. The package allows calculating the gradient and the diagonal of the Hessian of several divergences which can be used to good effect by the MomentBasedEstimators package.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaParallel/Elemental.jl">Elemental.jl</a> : A Julia interface to the <a class="reference external" href="https://libelemental.org/">Elemental linear algebra library</a> with third-party interfaces. <a class="reference external" href="https://github.com/elemental/Elemental">Source code</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaFolds/FGenerators.jl">FGenerators.jl</a> : A package for defining <code class="docutils literal notranslate"><span class="pre">Transducers.jl</span></code>-compatible extended foldl with a simple <code class="docutils literal notranslate"><span class="pre">&#64;yield</span></code>-based syntax.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLinearAlgebra/GenericLinearAlgebra.jl">GenericLinearAlgebra.jl</a> : Partly to extend linear algebra functionality in base to cover generic element types, e.g. <code class="docutils literal notranslate"><span class="pre">BigFloat</span></code> and <code class="docutils literal notranslate"><span class="pre">Quaternion</span></code>, and partly to be a place to experiment with fast linear algebra routines.</p></li>
+<li><p><a class="reference external" href="https://github.com/aaw/IncrementalSVD.jl">IncrementalSVD.jl</a> : Simon Funk’s approach to collaborative filtering using the singular value decomposition, implemented in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/IntelVectorMath.jl">IntelVectorMath.jl</a> : Julia bindings for the Intel Vector Math Library.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLinearAlgebra/IterativeSolvers.jl">IterativeSolvers.jl</a> : Iterative algorithms for solving linear systems, eigensystems, and singular value problems.</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/Leibniz.jl">Leibniz.jl</a> : Operator algebras for mixed-symmetry multivariate differentiable tensor fields.</p></li>
+<li><p><a class="reference external" href="https://github.com/Jutho/LinearMaps.jl">LinearMaps.jl</a> : A Julia package for defining and working with linear maps, also known as linear transformations or linear operators acting on vectors. The only requirement for a LinearMap is that it can act on a vector (by multiplication) efficiently.</p></li>
+<li><p><a class="reference external" href="https://github.com/christianpeel/LLLplus.jl">LLLplus.jl</a> : LLL lattice reduction, sphere decoder, and related lattice tools.</p></li>
+<li><p><a class="reference external" href="https://github.com/wildart/LMCLUS.jl">LMCLUS.jl</a> : Julia’s package for Linear Manifold Clustering.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaLinearAlgebra/MKL.jl">MKL.jl</a> : Intel MKL linear algebra backend for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaInv/MUMPSjInv.jl">MUMPSjInv.jl</a> : An alternative implementation of a Julia interface to the sparse direct solver <a class="reference external" href="http://mumps.enseeiht.fr/">MUMPS</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/lopezm94/SugarBLAS.jl">SugarBLAS.jl</a> : Syntactic sugar for BLAS polynomials.</p></li>
+<li><p><a class="reference external" href="https://github.com/mcabbott/TensorCast.jl">TensorCast.jl</a> :  working with multi-dimensional arrays in index notation.</p></li>
+<li><p><a class="reference external" href="https://github.com/Jutho/TensorOperations.jl">TensorOperations.jl</a> : Julia package for tensor contractions and related operations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaFolds/Transducers.jl">Transducers.jl</a> : provides composable algorithms on “sequence” of inputs. This feature, available in Clojure language, is a <a class="reference external" href="https://en.wikipedia.org/wiki/Transformation_matrix">transformation matrix</a> for linear transformations that is now in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaRandom/VSL.jl">VSL.jl</a> : Julia bindings for the Intel Vector Statistics Library. Requires <code class="docutils literal notranslate"><span class="pre">MKL.jl</span></code>.</p></li>
+</ul>
+<section id="array-data-structures">
+<h3>Array Data Structures<a class="headerlink" href="#array-data-structures" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/ArrayInterface.jl">ArrayInterface.jl</a> : Designs for new Base array interface primitives.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/BlockArrays.jl">BlockArrays.jl</a> : BlockArrays for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaData/CategoricalArrays.jl">CategoricalArrays.jl</a> : Arrays for working with categorical data (both nominal and ordinal) in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/ContinuumArrays.jl">ContinuumArrays.jl</a> : A package for representing quasi arrays with continuous indices.</p></li>
+<li><p><a class="reference external" href="https://github.com/eschnett/FastArrays.jl">FastArrays.jl</a> : Multi-dimensional arrays with arbitrary upper and lower bounds that can be fixed at compile time.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/IndirectArrays.jl">IndirectArrays.jl</a> : Julia implementation of indexed or “lookup” arrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/InfiniteArrays.jl">InfiniteArrays.jl</a> : A Julia package for representing infinite-dimensional arrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/LazyArrays.jl">LazyArrays.jl</a> : Lazy arrays and linear algebra in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/LazyGrids.jl">LazyGrids.jl</a> : lazy representation of multi-dimensional grids.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/MappedArrays.jl">MappedArrays.jl</a> : Lazy in-place transformations of arrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/davidavdav/NamedArrays.jl">NamedArrays.jl</a> : Julia type that implements a drop-in replacement of Array with named dimensions and Dict-type indexes.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/NamedAxesArrays.jl">NamedAxesArrays.jl</a> : Performant arrays where each axis can be named.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/OffsetArrays.jl">OffsetArrays.jl</a> : Fortran-like arrays with arbitrary, zero or negative starting indices for arrays in Julia. The main purpose of this package is to simplify translation from Fortran codes intensively using Fortran arrays with negative and zero starting indices, such as the codes accompanying the book Numerical Solution of Hyperbolic Partial Differential Equations by prof. John A. Trangenstein.</p></li>
+<li><p><a class="reference external" href="https://github.com/RalphAS/Pseudospectra.jl">Pseudospectra.jl</a> : a package for computing pseudospectra of non-symmetric matrices, and plotting them along with eigenvalues (“spectral portraits”).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/QuasiArrays.jl">QuasiArrays.jl</a> : A package for representing quasi-arrays, viz. arrays with non-classical indexing, including possibly continuous indexing.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/RandomMatrices.jl">RandomMatrices.jl</a> : Random Matrices, extending the <code class="docutils literal notranslate"><span class="pre">Distributions</span></code> package to provide methods for working with matrix-valued random variables.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/RangeArrays.jl">RangeArrays.jl</a> : Efficient and convenient array data structures where the columns of the arrays are generated (on the fly) by Ranges.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/ShiftedArrays.jl">ShiftedArrays.jl</a> : Lazy shifted arrays implementation for data analysis in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/StaticArrays.jl">StaticArrays.jl</a> : Statically sized arrays for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSIMD/StrideArrays.jl">StrideArrays.jl</a> : Library supporting the ArrayInterface.jl strided array interface.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/StructArrays.jl">StructArrays.jl</a> : Efficient implementation of struct arrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaCollections/SuffixArrays.jl">SuffixArrays.jl</a> : Native Julia suffix array implementation.</p></li>
+<li><p><a class="reference external" href="https://github.com/garrison/UniqueVectors.jl">UniqueVectors.jl</a> : Vectors of unique elements, with quick reverse lookups.</p></li>
+<li><p><a class="reference external" href="https://github.com/sisl/Vec.jl">Vec.jl</a> : Provides 2D and 3D vector types for vector operations. All types are immutable and are subtypes of <code class="docutils literal notranslate"><span class="pre">StaticArrays.jl</span></code>.</p></li>
+</ul>
+</section>
+<section id="matrices">
+<h3>Matrices<a class="headerlink" href="#matrices" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Matrix_theory">Wikipedia: Matrix Theory</a></p>
+<blockquote>
+<div><p>Special Array/Matrix Algorithms, for Array Types, see Data Types section.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/timholy/AxisAlgorithms.jl">AxisAlgorithms.jl</a> : Efficient filtering and linear algebra routines for multidimensional arrays.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/BandedMatrices.jl">BandedMatrices.jl</a> : A Julia package for representing banded matrices.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/CatIndices.jl">CatIndices.jl</a> : Julia package for indices-aware array concatenation and growth.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/EndpointRanges.jl">EndpointRanges.jl</a> : Julia package for doing arithmetic on endpoints in array indexing.</p></li>
+<li><p><a class="reference external" href="https://github.com/WaveProp/HMatrices.jl">HMatrices.jl</a> : A Julia library for hierarchical matrices.</p></li>
+<li><p><a class="reference external" href="https://github.com/MichielStock/Kronecker.jl">Kronecker.jl</a> : A general-purpose toolbox for efficient Kronecker-based algebra that combines lazy evaluation and algebraic tricks such that it can implicitely work with huge matrices. It allows to work with large Kronecker systems both much faster and using much less memory than the naive implementation of the <a class="reference external" href="https://en.wikipedia.org/wiki/Kronecker_product">Kronecker product</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/IshitaTakeshi/KSVD.jl">KSVD.jl</a> : K-SVD is an algorithm for creating overcomplete dictionaries for sparse representations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/LowRankApprox.jl">LowRankApprox.jl</a> : Fast low-rank matrix approximation in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/MatrixDepot.jl">MatrixDepot.jl</a> : An Extensible Test Matrix Collection for Julia. <a class="reference external" href="https://matrixdepotjl.readthedocs.io/en/latest/">Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/PaddedViews.jl">PaddedViews.jl</a> : Add virtual padding to the edges of an array.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaStats/PDMats.jl">PDMats.jl</a> : Uniform Interface for positive definite matrices of various structures.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/PositiveFactorizations.jl">PositiveFactorizations.jl</a> : Positive-definite (approximations) to matrices.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/SpecialMatrices.jl">SpecialMatrices.jl</a> : Julia package for working with special matrix types.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMatrices/ToeplitzMatrices.jl">ToeplitzMatrices.jl</a> : Fast matrix multiplication and division for Toeplitz matrices in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/WoodburyMatrices.jl">WoodburyMatrices.jl</a> : Library support for the <a class="reference external" href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity">Woodbury matrix identity</a>.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏗️ <a class="reference external" href="https://github.com/timholy/ArrayIteration.jl">ArrayIteration.jl</a> : Testing new ideas for array iteration. Some of the features have already moved to Julia itself.</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/ChrisRackauckas/ChunkedArrays.jl">ChunkedArrays.jl</a> : A package for increasing the performance of arrays generated iteratively. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+<li><p>🏚️ <a class="reference external" href="https://github.com/acroy/Expokit.jl">Expokit.jl</a> : <a class="reference external" href="https://www.maths.uq.edu.au/expokit">EXPOKIT</a> efficiently calculates the action of matrix exponentials on vectors for large sparse matrices.. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+<section id="sparse-matrices">
+<h4>Sparse Matrices<a class="headerlink" href="#sparse-matrices" title="Permalink to this headline">#</a></h4>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Sparse_matrices">Wikipedia: Sparse Matrices</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/HarwellRutherfordBoeing.jl">HarwellRutherfordBoeing.jl</a> : A Julia Reader for the Harwell-Boeing and Rutherford-Boeing Formats.</p></li>
+<li><p><a class="reference external" href="https://github.com/FixedEffects/InteractiveFixedEffectModels.jl">InteractiveFixedEffectModels.jl</a> : Estimate factor models on sparse datasets.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/MatrixMarket.jl">MatrixMarket.jl</a> : A package to read the <a class="reference external" href="https://math.nist.gov/MatrixMarket/formats.html#MMformat">MatrixMarket file format</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/Metis.jl">Metis.jl</a> : Julia interface to the <a class="reference external" href="http://glaros.dtc.umn.edu/gkhome/metis/metis/overview">Metis</a> graph-partitioning algorithms.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/MKLSparse.jl">MKLSparse.jl</a> : Override sparse-dense operations when MKL is available.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaInv/MUMPSjInv.jl">MUMPS.jl</a> : An interface to <a class="reference external" href="http://mumps.enseeiht.fr/">MUMPS</a> (a MUltifrontal Massively Parallel sparse direct Solver) to efficiently solve large and sparse linear systems in scientific computing.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaSparse/Pardiso.jl">Pardiso.jl</a> : Calling the <a class="reference external" href="https://www.pardiso-project.org">PARDISO</a> library from Julia.</p></li>
+</ul>
+</section>
+</section>
+<section id="tensors">
+<h3>Tensors<a class="headerlink" href="#tensors" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/chakravala/AbstractTensors.jl">AbstractTensors.jl</a> : Tensor algebra abstract type interoperability with vector bundle parameter.</p></li>
+<li><p><a class="reference external" href="https://github.com/ITensor/ITensors.jl">ITensors.jl</a>: A Julia library for efficient tensor calculations.</p></li>
+<li><p><a class="reference external" href="https://github.com/ahwillia/Einsum.jl">Einsum.jl</a> : <a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein summation notation</a> in julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/mcabbott/Tullio.jl">Tullio.jl</a> : Tullio is a very flexible <a class="reference external" href="https://en.wikipedia.org/wiki/Einstein_notation">einsum</a> macro. A package for writing array operations in index notation.</p></li>
+</ul>
+</section>
+</section>
+<section id="digital-signal-processing-dsp">
+<h2>Digital signal processing (DSP)<a class="headerlink" href="#digital-signal-processing-dsp" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Digital_signal_processing">Wikipedia: DSP</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDSP/DSP.jl">DSP.jl</a> : Filter design, periodograms, window functions, and other digital signal processing functionality.</p></li>
+<li><p><a class="reference external" href="https://github.com/nantonel/ImageMethodReverb.jl">ImageMethodReverb.jl</a> : Julia implementation of a Room Acoustics Impulse Response Generator using the Randomized Image Method (RIM).</p></li>
+<li><p><a class="reference external" href="https://github.com/stevengj/MDCT.jl">MDCT.jl</a> : This module computes the modified discrete cosine transform (MDCT) in the Julia language and the inverse transform (IMDCT), using the fast type-IV discrete cosine tranform (DCT-IV) functions in Julia (via FFTW).</p></li>
+<li><p><a class="reference external" href="https://github.com/sairus7/SortFilters.jl">SortFilters.jl</a> : Fast moving quantile filters implemented as fast moving window sort algorithm.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDSP/Wavelets.jl">Wavelets.jl</a> : Fast Discrete Wavelet Transforms written in Julia by JuliaDSP.</p></li>
+</ul>
+<section id="fast-fourier-transform-fft">
+<h3>Fast Fourier transform (FFT)<a class="headerlink" href="#fast-fourier-transform-fft" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Wikipedia: FFT</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaArrays/FFTViews.jl">FFTViews.jl</a> : Julia package for fast fourier transforms and periodic views.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/FFTW.jl">FFTW.jl</a> : Julia bindings to the FFTW library for fast Fourier transforms.</p></li>
+<li><p><a class="reference external" href="https://github.com/bionanoimaging/FourierTools.jl">FourierTools.jl</a> : Tools for working with Fourier space. <a class="reference external" href="https://youtu.be/qYgJDb_Ko2E">JuliaCon 2021 video</a></p></li>
+<li><p><a class="reference external" href="https://github.com/gwater/HexFFT.jl">HexFFT.jl</a> : Fast Fourier transform on hexagonal grids using <a class="reference external" href="https://ieeexplore.ieee.org/document/7532670/">Birdsong and Rummelt’s algorithm</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/NFFT.jl">NFFT.jl</a> : Julia implementation of the Non-equidistant Fast Fourier Transform (NFFT).</p></li>
+</ul>
+</section>
+</section>
+<section id="symbolic-computation">
+<h2>Symbolic Computation<a class="headerlink" href="#symbolic-computation" title="Permalink to this headline">#</a></h2>
+<p>See <a class="reference external" href="modeling.md#symbolic-computation">Modeling | Symbolic Computation</a></p>
+</section>
+<section id="polynomials">
+<h2>Polynomials<a class="headerlink" href="#polynomials" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Polynomials">Wikipedia: Polynomials</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/RJDennis/ChebyshevApprox">ChebyshevApprox</a> : Julia code to approximate continuous functions using Chebyshev polynomials.</p></li>
+<li><p><a class="reference external" href="https://github.com/timholy/CoordinateSplittingPTrees.jl">CoordinateSplittingPTrees.jl</a> : Accurate and efficient full-degree multidimensional polynomial interpolation.</p></li>
+<li><p><a class="reference external" href="https://github.com/andreasnoack/FastPolynomialRoots.jl">FastPolynomialRoots.jl</a> : Fast and backward stable computation of roots of polynomials in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAlgebra/FixedPolynomials.jl">FixedPolynomials.jl</a> : A package for really fast evaluation of multivariate polynomials. (No <code class="docutils literal notranslate"><span class="pre">Porject.toml</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/pjabardo/Jacobi.jl">Jacobi.jl</a> : Jacobi polynomials and Gauss quadrature related functions.</p></li>
+<li><p><a class="reference external" href="https://github.com/daviddelaat/MultiPoly.jl">MultiPoly.jl</a> : Sparse multivariate polynomials in Julia. (No <code class="docutils literal notranslate"><span class="pre">Porject.toml</span></code>)</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAlgebra/MultivariatePolynomials.jl">MultivariatePolynomials.jl</a> : Multivariate polynomials and multivariate moments.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Polynomials.jl">Polynomial.jl</a> : Polynomial manipulations and <a class="reference external" href="https://gist.github.com/mathpup/8514578">PolyExt.jl</a>, an extension of Polynomial.jl to support polynomial division, with handy conversions and promotion rules.</p></li>
+<li><p><a class="reference external" href="https://github.com/giordano/PolynomialRoots.jl">PolynomialRoots.jl</a> : Fast complex polynomial root finder, with support for arbitrary precision calculations</p></li>
+<li><p><a class="reference external" href="https://github.com/simonbyrne/Remez.jl">Remez.jl</a> : <a class="reference external" href="https://en.wikipedia.org/wiki/Remez_algorithm">Remez algorithm</a> for computing minimax polynomial approximations.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaAlgebra/SemialgebraicSets.jl">SemialgebraicSets.jl</a> : Extension of MultivariatePolynomials to semialgebraic sets.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaIntervals/TaylorModels.jl">TaylorModels.jl</a> : A numerical mathematics package to treat the high-order scaling property of the remainder bound interval in a Taylor polynomial. <a class="reference external" href="https://youtu.be/o1h7BUW04NI">📹 JuliaCon 2018</a>.</p></li>
+</ul>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Types_of_functions">Wikipedia: Functions</a></p>
+<blockquote>
+<div><p>Evaluation and approximations of functions</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/ApproxFun.jl">ApproxFun.jl</a> : Julia package for function approximation.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/BasisFunctions.jl">BasisFunctions.jl</a> : A collection of routines for working with a number of standard basis functions. For more complete software packages to manipulate numerical function approximations, please consider ApproxFun.</p></li>
+<li><p><a class="reference external" href="https://github.com/nolta/Elliptic.jl">Elliptic.jl</a> : Elliptic integral and Jacobi elliptic special functions.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/FrameFun.jl">FrameFun.jl</a> : Exploring practical possibilities of approximating functions with frames rather than with a basis.</p></li>
+<li><p><a class="reference external" href="https://github.com/jlapeyre/LambertW.jl">LambertW.jl</a> : A package implementing the Lambert_W function and associated omega constant.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/SpecialFunctions.jl">SpecialFunctions.jl</a> : Special mathematical functions in Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/gwater/Struve.jl">Struve.jl</a> : <a class="reference external" href="https://dlmf.nist.gov/11">Struve</a> functions for Julia.</p></li>
+</ul>
+</section>
+<section id="calculus">
+<h2>Calculus<a class="headerlink" href="#calculus" title="Permalink to this headline">#</a></h2>
+<p><strong>Resources</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://wstein.org/rh/">Riemann Hypothesis book</a> with the <a class="reference external" href="https://github.com/williamstein/rh">source code on github</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/CalculusWithJulia/CalculusWithJulia.github.io">Calculus With Julia</a> : Introductory Calculus with the Julia Programming Language.</p></li>
+<li><p>An IJulia notebook showing <a class="reference external" href="https://nbviewer.org/gist/lbenet/616fa81f3c12c9cfcf97">Taylor’s method integration of the pendulum</a>.</p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Calculus.jl">Calculus.jl</a> : Calculus package.</p></li>
+<li><p><a class="reference external" href="https://github.com/giordano/Cuba.jl">Cuba.jl</a> : Library for multidimensional numerical integration with the <a class="reference external" href="http://www.feynarts.de/cuba/">Cuba library</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Cubature.jl">Cubature.jl</a> : One- and multi-dimensional adaptive integration routines for the Julia language.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaApproximation/FastGaussQuadrature.jl">FastGaussQuadrature.jl</a> : Computes Gauss quadrature rules to 16-digit precision (so far Legendre, Jacobi, Lobatto, Radau).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/FiniteDiff.jl">FiniteDiff.jl</a> : Fast non-allocating calculations of gradients, Jacobians, and Hessians with sparsity support.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/FiniteDifferences.jl">FiniteDifferences.jl</a> : estimating derivatives with <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference">finite differences</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/ErikQQY/FractionalCalculus.jl">FractionalCalculus.jl</a> : High performance and high precision numerical <a class="reference external" href="https://en.wikipedia.org/wiki/Fractional_calculus">fractional calculus</a> computing.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/HCubature.jl">HCubature.jl</a> : Pure-Julia multidimensional h-adaptive integration.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciML/Quadrature.jl">Quadrature.jl</a> : A common interface for quadrature and numerical integration.</p></li>
+<li><p><a class="reference external" href="https://github.com/scheinerman/RiemannComplexNumbers.jl">RiemannComplexNumbers.jl</a> : The RiemannComplexNumbers module is an alternative Complex type for Julia (with a single complex infinity value).</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a> : Root finding functions for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/TaylorSeries.jl">TaylorSeries.jl</a> : A julia package for Taylor expansions in one independent variable.</p></li>
+<li><p><a class="reference external" href="https://github.com/krcools/WiltonInts84.jl">WiltonInts84.jl</a> : Integrals of arbitrary powers of R over flat triangles.</p></li>
+</ul>
+<section id="automatic-differentiation">
+<h3>Automatic Differentiation<a class="headerlink" href="#automatic-differentiation" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/ChainRules.jl">ChainRules.jl</a> : forward and reverse mode automatic differentiation primitives.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/Diffractor.jl">Diffractor.jl</a> : An experimental next-generation, compiler-based AD system for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/DualNumbers.jl">DualNumbers.jl</a> : Julia package for representing dual numbers and for performing dual algebra.</p></li>
+<li><p><a class="reference external" href="https://github.com/wsmoses/Enzyme.jl">Enzyme.jl</a> : Julia bindings for the Enzyme automatic differentiator. The Enzyme project is a tool for performing reverse-mode automatic differentiation (AD) of statically-analyzable LLVM IR.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> : Forward Mode Automatic Differentiation for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/HyperDualNumbers.jl">HyperDualNumbers.jl</a> : Hyper-Dual Numbers for Exact Second-Derivative Calculations, is structured similar to the DualNumbers package, which aims for complete support for HyperDual types for numerical functions within Julia’s Base. Currently, basic mathematical operations and trigonometric functions are supported.</p></li>
+<li><p><a class="reference external" href="https://github.com/JuliaDiff/ReverseDiff.jl">ReverseDiff.jl</a> : Reverse Mode Automatic Differentiation for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/mlubin/ReverseDiffSparse.jl">ReverseDiffSparse.jl</a> : Hessian algorithmic differentiation to compute hessian sparsity pattern.</p></li>
+<li><p><a class="reference external" href="https://github.com/dfdx/Yota.jl">Yota.jl</a> : Reverse-mode automatic differentiation for static and dynamic graphs.</p></li>
+<li><p><a class="reference external" href="https://github.com/FluxML/Zygote.jl">Zygote.jl</a> : Source-to-source automatic differentiation (AD) in Julia, and is the next-gen AD system for the Flux differentiable programming framework.</p></li>
+</ul>
+</section>
+</section>
+<section id="mathematical-analysis">
+<h2>Mathematical Analysis<a class="headerlink" href="#mathematical-analysis" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Mathematical_analysis">Wikipedia: Mathematical Analysis</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/chkwon/Complementarity.jl">Complementarity.jl</a> : This package provides a modeling and computational interface for solving <a class="reference external" href="https://en.wikipedia.org/wiki/Mixed_complementarity_problem">Mixed Complementarity Problems (MCP)</a>, modeling by <code class="docutils literal notranslate"><span class="pre">JuMP.jl</span></code> and computing by <code class="docutils literal notranslate"><span class="pre">PATHSolver.jl</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/Fatou.jl">Fatou.jl</a> : Fatou sets in Julia (Fractals, Newton basins, Mandelbrot).</p></li>
+<li><p><a class="reference external" href="https://github.com/chkwon/PATHSolver.jl">PATHSolver.jl</a> : This package provides a Julia wrapper of the PATH Solver for solving <em>linear</em> Mixed Complementarity Problems (MCP).</p></li>
+<li><p><a class="reference external" href="https://github.com/chakravala/Wilkinson.jl">Wilkinson.jl</a> : Toolkit for studying numerical analysis and floating point algebra round-off error in Julia.</p></li>
+</ul>
+</section>
+<section id="discrete-math">
+<h2>Discrete math<a class="headerlink" href="#discrete-math" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Discrete_mathematics">Wikipedia: Discrete math</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Category:Combinatorics">Wikipedia: Combinatorics</a></p></li>
+</ul>
+<p><strong>Packages</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/StefanKarpinski/Collatz.jl">Collatz.jl</a> : The <a class="reference external" href="https://en.wikipedia.org/wiki/Collatz_conjecture">Collatz conjecture</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/jlapeyre/PermPlain.jl">PermPlain.jl</a> : Permutations of integers.</p></li>
+<li><p><a class="reference external" href="https://github.com/scheinerman/Permutations.jl">Permutations.jl</a> : Permutations class for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/scheinerman/SimplePosets.jl">SimplePosets.jl</a> : Simple partially ordered sets for Julia.</p></li>
+<li><p><a class="reference external" href="https://github.com/jlapeyre/ZChop.jl">ZChop.jl</a> : Replaces small numbers with zero.</p></li>
+</ul>
+<section id="graph-theory">
+<h3>Graph Theory<a class="headerlink" href="#graph-theory" title="Permalink to this headline">#</a></h3>
+<p>See <a class="reference external" href="./graph.md#graph-algorithms">Graph algorithms</a> section.</p>
+</section>
+</section>
+<section id="information-theory">
+<h2>Information theory<a class="headerlink" href="#information-theory" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia: Information theory</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Tchanders/InformationMeasures.jl">InformationMeasures.jl</a> : Entropy, mutual information and higher order measures from information theory, with various estimators and discretisation methods.</p></li>
+</ul>
+</section>
+<section id="puzzles">
+<h2>Puzzles<a class="headerlink" href="#puzzles" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/romstad/Chess.jl">Chess.jl</a> : Julia chess programming library.</p></li>
+<li><p><a class="reference external" href="https://github.com/ChristianKurz/REPLTetris.jl">REPLTetris.jl</a> : A small Tetris-implementation to be used directly form the Julia REPL.</p></li>
+</ul>
+<details> <summary>🏚️ Might not work in the current version of Julia</summary>
+<ul class="simple">
+<li><p>🏚️ <a class="reference external" href="https://github.com/djsegal/Tetris.jl">Tetris.jl</a> : GUI Tetris. (No <code class="docutils literal notranslate"><span class="pre">Project.toml</span></code>)</p></li>
+</ul>
+</details>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="interop.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Interoperativity</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="modeling.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modeling and simulation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Wen-Wei Tseng<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
