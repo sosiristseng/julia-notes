@@ -114,7 +114,6 @@
 - [IRTools.jl](https://github.com/FluxML/IRTools.jl) : Intermediate Representation toolkit to provide a simple and flexible IR format, expressive enough to work with both lowered and typed Julia code, as well as external IRs. It can be used with Julia metaprogramming tools such as Cassette.
 - [Revise.jl](https://github.com/timholy/Revise.jl) : Automatically update function definitions in a running Julia session. It will help you keep your sessions running longer, reducing the need to restart Julia whenever you make changes to code.
 
-
 ## Program Analysis
 
 **Resources**
@@ -145,3 +144,7 @@
 - [SimpleTraits.jl](https://github.com/mauro3/SimpleTraits.jl) : Simple Traits for Julia.
 - [WhereTraits.jl](https://github.com/schlichtanders/WhereTraits.jl) : This package exports one powerful macro @traits with which you can extend Julia's where syntax.
 - [ValSplit.jl](https://github.com/ztangent/ValSplit.jl) : Compile away dynamic dispatch on Val-typed arguments via value-splitting.
+
+## Object-oriented programming (OOP)
+
+- [TyOOP.jl](https://github.com/Suzhou-tongyuan/TyOOP.jl) : Conventional object-oriented programming in Julia without breaking Julia's core design ideas.
