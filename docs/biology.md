@@ -121,3 +121,4 @@
 See also [Pumas AI](https://github.com/PumasAI), the commercial framework for Pharmaceutical Modeling and Simulation in Julia.
 
 - [DataInterpolations.jl](https://github.com/PumasAI/DataInterpolations.jl) : A library of data interpolation and smoothing functions.
+- [ODMXMLTools.jl](https://github.com/PharmCat/ODMXMLTools.jl) : a simple tool set for working with [ODM-XML](https://www.cdisc.org/standards/data-exchange/odm), a vendor-neutral, platform-independent format for exchanging and archiving clinical and translational research data and friends.
